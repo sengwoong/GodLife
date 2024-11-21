@@ -78,7 +78,7 @@ android {
     namespace "com.godlife"
     defaultConfig {
         applicationId "com.godlife"
-        resValue "string", "build_config_package", "YOUR_PACKAGE_NAME_IN_ANDROIDMANIFEST_XML","com.godlife"
+        resValue "string", "build_config_package","com.godlife"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
