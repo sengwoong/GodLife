@@ -5,6 +5,7 @@ const common = {
   GRAY_200: '#E7E7E7',
   WHITE_100: '#FFFFFF',
   UNCHANGE_BLACK: '#161616',
+
 };
 
 const colors = {
@@ -22,6 +23,7 @@ const colorHex = {
   BLUE: colors.BLUE,
   GRAY: colors.GRAY,
   BLACK: colors.BLACK,
+  LIGHT_BLACK:'#4A4A4A',  
 } as const;
 
 export { colors, colorHex };

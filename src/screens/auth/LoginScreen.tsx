@@ -1,20 +1,20 @@
-import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import ImageSlider from '../../components/ImageSlider';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 function LoginScreen() {
-  const images = [
-    'https://via.placeholder.com/300x200.png?text=Image+1',
-    'https://via.placeholder.com/300x200.png?text=Image+2',
-    'https://via.placeholder.com/300x200.png?text=Image+3',
-  ];
   return (
-    <View>
-      <Text>로그인 스크린</Text>
+    <View style={styles.container}>
+    로그인 페이지
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default LoginScreen;
