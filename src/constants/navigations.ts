@@ -1,4 +1,7 @@
 const authNavigations = {
+  HOME: 'Home',
+  LOGIN: 'Login',
+  SIGNUP: 'Signup',
   AUTH: 'Auth',  
   MAIN: 'Main',
   SETTINGS: 'Settings',
