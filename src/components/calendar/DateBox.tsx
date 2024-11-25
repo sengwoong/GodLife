@@ -18,8 +18,8 @@ const deviceWidth = Dimensions.get('window').width;
 function DateBox({
   date,
   isToday,
-  hasSchedule, // 스케줄 여부
-  selectedDate, // 선택된 날짜
+  hasSchedule,  
+  selectedDate, 
   onPressDate,
 }: DateBoxProps) {
 

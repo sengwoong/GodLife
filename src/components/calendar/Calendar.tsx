@@ -6,7 +6,7 @@ import DayOfWeeks from './DayOfWeeks';
 import DateBox from './DateBox';
 import YearSelector from './YearSelector';
 import CalendarHomeHeaderRight from './CalendarHomeHeaderRight';
-import { colors } from '../../constants'; // 필요한 색상 값 가져오기
+import { colors } from '../../constants'; 
 import { isSameAsCurrentDate, MonthYear } from '../../../utils';
 
 interface CalendarProps<T> {
@@ -100,13 +100,13 @@ function Calendar<T>({
 
 const styles = StyleSheet.create({
   calendarContainer: {
-    backgroundColor: colors.WHITE, // 캘린더 배경색
-    borderRadius: 10, // 모서리를 둥글게 (선택 사항)
-    shadowColor: colors.BLACK, // iOS 그림자 색상
-    shadowOffset: { width: 0, height: 2 }, // iOS 그림자 방향
-    shadowOpacity: 0.2, // iOS 그림자 투명도
-    shadowRadius: 4, // iOS 그림자 번짐 정도
-    elevation: 6, // Android 그림자 높이
+    backgroundColor: colors.WHITE, 
+    borderRadius: 10, 
+    shadowColor: colors.BLACK, 
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2, 
+    shadowRadius: 4, 
+    elevation: 6, 
   
   },
   headerContainer: {

@@ -1,4 +1,4 @@
-// ImageSlider.tsx
+
 import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, Image, StyleSheet, Dimensions, NativeSyntheticEvent, NativeScrollEvent, Text } from 'react-native';
 import { colors } from '../constants/index'; 

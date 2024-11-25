@@ -17,7 +17,7 @@ interface CustomButtonProps extends PressableProps {
   label: string;
   variant?: 'filled' | 'outlined';
   color?: 'GREEN' | 'RED' | 'BLUE' | 'BLACK';
-  size?: 'large' | 'medium';
+  size?: 'large' | 'medium' | 'text_size';
   shape?: 'rounded' | 'square';
   inValid?: boolean;
   style?: StyleProp<ViewStyle>;
@@ -33,7 +33,7 @@ const deviceHeight = Dimensions.get('screen').height;
  * @param {string} label - 버튼 내부에 표시될 텍스트.
  * @param {'filled' | 'outlined'} [variant='filled'] - 버튼의 스타일 유형.
  * @param {'GREEN' | 'RED' | 'BLUE' | 'BLACK'} [color='GREEN'] - 버튼의 색상.
- * @param {'large' | 'medium'} [size='large'] - 버튼 크기.
+ * @param {'large' | 'medium'| 'text_size'} [size='large'] - 버튼 크기.
  * @param {'rounded' | 'square'} [shape='square'] - 버튼의 모양 (둥근 모서리 또는 사각형).
  * @param {boolean} [inValid=false] - 버튼 비활성화 여부. true일 경우 비활성화.
  * @param {StyleProp<ViewStyle>} [style] - 외부에서 전달받는 추가 스타일.
@@ -55,8 +55,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   icon = null,
   ...props
 }) => {
-  // 선택한 색상을 colors 객체에서 동적으로 가져오기
-
   return (
     <Pressable
       disabled={inValid}
@@ -65,7 +63,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
         styles[shape],
         inValid && styles.inValid,
         pressed ? [styles[`${variant}Pressed`], styles[`${variant}${color}`]] : styles[`${variant}${color}`],
-        style, // 외부에서 전달받은 스타일 적용
+        style, 
       ]}
       {...props}
     >
@@ -86,13 +84,14 @@ const styles = StyleSheet.create({
   inValid: {
     opacity: 0.5,
   } as ViewStyle,
+
   rounded: {
     borderRadius: 25,
   } as ViewStyle,
   square: {
     borderRadius: 0,
   } as ViewStyle,
-  // Color variants with dynamic color assignment
+
   filledGREEN: {
     backgroundColor: colors.GREEN,
   } as ViewStyle,
@@ -145,6 +144,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 5,
+  } as ViewStyle,
+  text_size: {
+    width: 'auto', 
+    padding:10,
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   } as ViewStyle,
 
   text: {

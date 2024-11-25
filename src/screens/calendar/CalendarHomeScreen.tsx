@@ -1,7 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View } from 'react-native';
 import Calendar from '../../components/calendar/Calendar';
 import { getMonthYearDetails } from '../../../utils';
+import EventList from '../../components/EventList';
+import CustomButton from '../../components/CustomButton';
+import { colors } from '../../constants/index';  
 
 function CalendarHomeScreen() {
   const { year: initialYear, month: initialMonth, firstDOW: initialDay } = getMonthYearDetails();
@@ -10,11 +13,11 @@ function CalendarHomeScreen() {
   const [month, setMonth] = useState(initialMonth);
   const [day, setDay] = useState(initialDay);
 
-  const schedules = useMemo(() => ({
-    '30': [{ event: '미팅', time: '10:00 AM', id: 10 }],
-    '1': [{ event: '프로젝트 마감', time: '5:00 PM', id: 20 }],
-    '2': [{ event: '친구 생일', time: 'All Day', id: 30 }],
-  }), []);
+  const schedules = useMemo(() => ([
+    {"content": "프로젝트 마감 wafqfqwfqwfqwfqwfqwfqwfqwfqwfweghaewrgfhdfoiqwdoiwgawegwaegkphnewaknglkawenglknlwakegnlkwanglkwnalkgenlkwaengklwaenglkwaneg", "id": 20, "time": "5:00 PM", "title": "asdasd","day":10},
+     {"content": "친구 생일qwfoiphqwhfiqwoipfqhwipfhnqpie;ofhw;ahf;oipuauehf;opiwaeoifhwahfoiphewoiheoiewajhnflokwalkfwaefhjlk", "id": 30, "time": "All Day", "title": "asdasd","day":20},
+      {"content": "미팅", "id": 10, "time": "10:00 AM", "title": "asdasd","day":30}
+    ]), []);
 
   const monthYear = useMemo(() => {
     const lastDate = new Date(year, month, 0).getDate();
@@ -61,7 +64,20 @@ function CalendarHomeScreen() {
         onChangeMonth={onChangeMonth} 
         moveToToday={moveToToday} 
       />
-      <Text style={styles.mapText}>스크린</Text>
+
+      <View style={styles.rowContainer}>
+        <Text style={styles.SelectDayText}>{day}일 할일</Text>
+        <CustomButton 
+            size='text_size' 
+            label='생성하기' 
+            color='BLACK' 
+            shape='rounded' 
+            style={{ flexWrap: 'nowrap', // 텍스트가 줄 바꿈되지 않도록 설정
+            }} 
+          />
+      </View>
+
+      <EventList posts={schedules} />
     </SafeAreaView>
   );
 }
@@ -71,11 +87,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  mapText: {
-    fontSize: 16,
-    textAlign: 'center',
+  SelectDayText: {
+    fontSize: 32,
+    color: colors.BLACK,
+    fontWeight: '600',
+    margin: 10,
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     margin: 10,
   },
 });
+
 
 export default CalendarHomeScreen;
