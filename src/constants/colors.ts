@@ -5,7 +5,8 @@ const common = {
   GRAY_200: '#E7E7E7',
   WHITE_100: '#FFFFFF',
   UNCHANGE_BLACK: '#161616',
-
+  LIGHT_GREEN: '#B2E0B2', 
+  LIGHT_RED: '#FFCCCC', 
 };
 
 const colors = {
@@ -15,6 +16,8 @@ const colors = {
   GRAY: common.GRAY_200,
   BLACK: common.UNCHANGE_BLACK,
   WHITE: common.WHITE_100,
+  LIGHT_GREEN: common.LIGHT_GREEN,
+  LIGHT_RED: common.LIGHT_RED, 
 } as const;
 
 const colorHex = {
@@ -23,7 +26,9 @@ const colorHex = {
   BLUE: colors.BLUE,
   GRAY: colors.GRAY,
   BLACK: colors.BLACK,
-  LIGHT_BLACK:'#4A4A4A',  
+  LIGHT_BLACK: '#4A4A4A',
+  LIGHT_GREEN: colors.LIGHT_GREEN,
+  LIGHT_RED: colors.LIGHT_RED, 
 } as const;
 
 export { colors, colorHex };

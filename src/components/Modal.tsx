@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import { colors,colorHex } from '../constants/index';  
 
-
 interface OptionContextValue {
   onClickOutSide?: (event: GestureResponderEvent) => void;
 }
@@ -101,7 +100,6 @@ function Button({
       <Text style={[styles.optionText, isDanger && styles.dangerText]}>
         {children}
       </Text>
-
       {isChecked && (
       <Text>{CheckMessage}</Text>
       )}
@@ -151,7 +149,6 @@ interface CheckBoxProps extends PressableProps {
         ]}
         {...props}>
         {isChecked ? CheckIcon : UnCheckIcon}
-  
         <Text style={styles.checkBoxText}>{children}</Text>
       </Pressable>
     );
@@ -173,7 +170,6 @@ function Filter({children, isSelected, ...props}: FilterProps) {
         style={[isSelected ? styles.filterSelectedText : styles.filterText]}>
         {children}
       </Text>
-    
     </Pressable>
   );
 }
