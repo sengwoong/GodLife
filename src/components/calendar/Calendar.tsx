@@ -8,11 +8,17 @@ import YearSelector from './YearSelector';
 import CalendarHomeHeaderRight from './CalendarHomeHeaderRight';
 import { colors } from '../../constants'; 
 import { isSameAsCurrentDate, MonthYear } from '../../../utils';
-
+interface Schedule {
+  content: string;
+  id: number;
+  time: string;
+  title: string;
+  day: number;
+}
 interface CalendarProps<T> {
   monthYear: MonthYear;
   selectedDate: number;
-  schedules: Record<number, T[]>;
+  schedules: Schedule[];
   onPressDate: (date: number) => void;
   onChangeMonth: (increment: number) => void;
   onChangeYear: (selectYear: number) => void;
@@ -76,7 +82,7 @@ function Calendar<T>({
               <DateBox
                 date={item.date}
                 isToday={isSameAsCurrentDate(year, month, item.date)}
-                hasSchedule={Boolean(schedules[item.date])}
+                hasSchedule={Boolean(schedules.some(schedule => schedule.day === item.date))}
                 selectedDate={selectedDate}
                 onPressDate={onPressDate}
               />

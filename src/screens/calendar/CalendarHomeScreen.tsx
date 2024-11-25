@@ -12,8 +12,14 @@ function CalendarHomeScreen() {
   const [year, setYear] = useState(initialYear);
   const [month, setMonth] = useState(initialMonth);
   const [day, setDay] = useState(initialDay);
-
-  const schedules = useMemo(() => ([
+  interface Schedule {
+    content: string;
+    id: number;
+    time: string;
+    title: string;
+    day: number;
+  }
+  const schedules = useMemo<Schedule[]>(() => ([
     {"content": "프로젝트 마감 wafqfqwfqwfqwfqwfqwfqwfqwfqwfweghaewrgfhdfoiqwdoiwgawegwaegkphnewaknglkawenglknlwakegnlkwanglkwnalkgenlkwaengklwaenglkwaneg", "id": 20, "time": "5:00 PM", "title": "asdasd","day":10},
      {"content": "친구 생일qwfoiphqwhfiqwoipfqhwipfhnqpie;ofhw;ahf;oipuauehf;opiwaeoifhwahfoiphewoiheoiewajhnflokwalkfwaefhjlk", "id": 30, "time": "All Day", "title": "asdasd","day":20},
       {"content": "미팅", "id": 10, "time": "10:00 AM", "title": "asdasd","day":30}
