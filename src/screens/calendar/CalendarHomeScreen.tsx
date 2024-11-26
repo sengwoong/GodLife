@@ -78,8 +78,7 @@ function CalendarHomeScreen() {
             label='생성하기' 
             color='BLACK' 
             shape='rounded' 
-            style={{ flexWrap: 'nowrap', // 텍스트가 줄 바꿈되지 않도록 설정
-            }} 
+            style={{ flexWrap: 'nowrap',  }} 
           />
       </View>
 

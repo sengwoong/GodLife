@@ -66,7 +66,6 @@ const styling = () =>
       color: colors.BLACK,
       fontSize: 24,
       fontWeight: '600',
-     
     },
     contentText: {
       color: colors.BLACK,
