@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { handleSearch, handleSelectSuggestion } from './searchUtils';
 import SearchResults from './SearchResults';
+import { colors } from '../../constants';
+interface SearchBarProps {
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
+  searchText: string;
+}
 
-
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC<SearchBarProps> = ({setSearchText,searchText}) => {
   const initialSuggestions = [
     'React',
     'React Native',
@@ -16,7 +20,7 @@ const SearchBar: React.FC = () => {
     'Spring',
   ];
 
-  const [searchText, setSearchText] = useState<string>(''); // 검색어 상태
+ 
   const [recentSearches, setRecentSearches] = useState<string[]>([]); // 최근 검색 상태
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>(initialSuggestions); // 필터링된 추천 상태
 
@@ -52,17 +56,16 @@ const styles = StyleSheet.create({
   container: {
     zIndex: 1,
     padding: 10,
-    backgroundColor: '#f5f5f5',
   },
   searchBar: {
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.WHITE,
     borderRadius: 25,
     paddingHorizontal: 15,
     height: 40,
     fontSize: 16,
     marginBottom: 10,
     elevation: 3,
-    shadowColor: '#000',
+    shadowColor:  colors.BLACK,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3.84,

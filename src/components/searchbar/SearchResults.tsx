@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { colors } from '../../constants';
 
 interface SearchResultsProps {
   searchText: string;
@@ -18,7 +19,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     <View style={styles.resultContainer}>
       {searchText.trim() && (
         <>
-          {/* 추천 단어 */}
           <View style={styles.column}>
             <Text style={styles.columnTitle}>추천 단어</Text>
             <FlatList
@@ -40,7 +40,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({
             />
           </View>
 
-          {/* 최근 검색 기록 */}
           <View style={styles.column}>
             <Text style={styles.columnTitle}>최근 검색</Text>
             <FlatList
@@ -66,11 +65,11 @@ const styles = StyleSheet.create({
   },
   column: {
     width: '48%',
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.WHITE,
     padding: 10,
     borderRadius: 10,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor:  colors.BLACK,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3.84,
@@ -83,18 +82,18 @@ const styles = StyleSheet.create({
   suggestionItem: {
     fontSize: 14,
     paddingVertical: 5,
-    color: '#007BFF',
+    color: colors.GRAY,
   },
   highlightedItem: {
     fontSize: 14,
     paddingVertical: 5,
-    color: '#FF4500',
+    color: colors.BLACK,
     fontWeight: 'bold',
   },
   recentItem: {
     fontSize: 14,
     paddingVertical: 5,
-    color: '#333',
+    color: colors.BLACK,
   },
 });
 
