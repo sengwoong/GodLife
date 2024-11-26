@@ -1,0 +1,72 @@
+import React, { useState } from 'react';
+import { View, TextInput, StyleSheet } from 'react-native';
+import { handleSearch, handleSelectSuggestion } from './searchUtils';
+import SearchResults from './SearchResults';
+
+
+const SearchBar: React.FC = () => {
+  const initialSuggestions = [
+    'React',
+    'React Native',
+    'JavaScript',
+    'TypeScript',
+    'Node.js',
+    'Python',
+    'Django',
+    'Spring',
+  ];
+
+  const [searchText, setSearchText] = useState<string>(''); // 검색어 상태
+  const [recentSearches, setRecentSearches] = useState<string[]>([]); // 최근 검색 상태
+  const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>(initialSuggestions); // 필터링된 추천 상태
+
+  const onSearchChange = (text: string): void => {
+    setSearchText(text);
+    handleSearch(text, initialSuggestions, setFilteredSuggestions);
+  };
+
+  const onSuggestionSelect = (suggestion: string): void => {
+    setSearchText('');
+    handleSelectSuggestion(suggestion, recentSearches, setRecentSearches, setFilteredSuggestions);
+  };
+
+  return (
+    <View style={styles.container}>
+      <TextInput
+        style={styles.searchBar}
+        placeholder="검색어를 입력하세요"
+        value={searchText}
+        onChangeText={onSearchChange}
+      />
+      <SearchResults
+        searchText={searchText}
+        filteredSuggestions={filteredSuggestions}
+        recentSearches={recentSearches}
+        onSuggestionSelect={onSuggestionSelect}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    zIndex: 1,
+    padding: 10,
+    backgroundColor: '#f5f5f5',
+  },
+  searchBar: {
+    backgroundColor: '#ffffff',
+    borderRadius: 25,
+    paddingHorizontal: 15,
+    height: 40,
+    fontSize: 16,
+    marginBottom: 10,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3.84,
+  },
+});
+
+export default SearchBar;
