@@ -1,8 +1,9 @@
 import React from 'react'
+import { Text } from 'react-native'
 
 function SettingScreen() {
   return (
-    <div>SettingScreen</div>
+    <Text>SettingScreen</Text>
   )
 }
 

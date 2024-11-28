@@ -2,10 +2,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, Image, StyleSheet, Dimensions, NativeSyntheticEvent, NativeScrollEvent, Text } from 'react-native';
 import { colors } from '../constants/index'; 
-const { width } = Dimensions.get('window');
-
+let { width } = Dimensions.get('window');
+width = width - 64;
 interface ImageSliderProps {
-  images: string[];
+  images: any[];
   interval?: number;
 }
 
@@ -43,7 +43,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, interval = 3000 }) =>
         onMomentumScrollEnd={handleScroll}
       > 
         {images.map((image, index) => (
-          <Image key={index} source={{ uri: image }} style={styles.image}  />
+          <Image key={index} source={ image } style={styles.image}  />
         ))}
       </ScrollView>
       <View style={styles.pagination}>
@@ -63,8 +63,9 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images, interval = 3000 }) =>
 
 const styles = StyleSheet.create({
   image: {
-    width: width,
-    height: 200,
+    width: width, 
+    height: width ,
+    resizeMode: 'contain',
   },
   pagination: {
     flexDirection: 'row',
