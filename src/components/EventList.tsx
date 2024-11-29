@@ -1,7 +1,7 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Pressable, Text } from 'react-native';
+import { ScrollView, StyleSheet, View, Pressable, Text, TextStyle, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../constants/index';
+import { colors, getFontStyle } from '../constants/index';
 
 function EventList({ posts }: { posts: any[] }) {
   const styles = styling();
@@ -39,39 +39,38 @@ const styling = () =>
   StyleSheet.create({
     container: {
       backgroundColor: colors.WHITE,
-    },
+    }as ViewStyle,
     innerContainer: {
       gap: 20,
-    },
+    }as ViewStyle,
     itemContainer: {
       flexDirection: 'row',
       marginBottom: 10,
-    },
+    }as ViewStyle,
     infoContainer: {
       borderTopWidth: 1,
       borderColor: colors.GRAY,
       padding: 20,
       width: '100%',
-    },
+    } as ViewStyle,
     infoText: {
       color: colors.GRAY, 
       backgroundColor: colors.BLACK, 
-      fontSize: 12, 
+      font : getFontStyle('body', 'medium', 'regular'),
       padding:5,
       borderRadius: 20,
       alignSelf: 'flex-start',
       overflow: 'hidden',
-    },
+    } as TextStyle,
     titleText: {
       color: colors.BLACK,
-      fontSize: 24,
-      fontWeight: '600',
-    },
+      font : getFontStyle('body', 'medium', 'bold'),
+    } as TextStyle, 
     contentText: {
       color: colors.BLACK,
       fontSize: 16,
       marginTop: 5,
-    },
+    } as ViewStyle,
   });
 
 export default EventList;

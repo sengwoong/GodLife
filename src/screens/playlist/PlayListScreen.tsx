@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, FlatList, StyleSheet, SafeAreaView, TextStyle } from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import SearchBar from '../../components/searchbar/SearchBar';
-import { colors } from '../../constants';
+import { colors, getFontStyle } from '../../constants';
 
 function PlayListScreen() {
   const [searchText, setSearchText] = useState<string>('');
@@ -73,13 +73,13 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontWeight: 'bold',
-    fontSize: 14,
+    fonts:getFontStyle('titleBody', 'small', 'medium'),
     color: colors.BLACK,
-  },
+  } as TextStyle,
   contentText: {
-    fontSize: 14,
+    fonts:getFontStyle('titleBody', 'small', 'medium'),
     color: colors.BLACK,
-  },
+  } as TextStyle,
   button: {
     marginTop: 'auto',
   },

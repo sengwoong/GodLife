@@ -8,9 +8,10 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TextStyle,
   View,
 } from 'react-native';
-import { colors,colorHex } from '../constants/index';  
+import { colors,colorHex, getFontStyle } from '../constants/index';  
 
 interface OptionContextValue {
   onClickOutSide?: (event: GestureResponderEvent) => void;
@@ -209,10 +210,9 @@ const styling = () =>
       backgroundColor: colorHex.LIGHT_BLACK,
     },
     optionText: {
-      fontSize: 17,
+      fonts : getFontStyle('titleBody', 'small', 'medium'),
       color: colors.BLACK,
-      fontWeight: '500',
-    },
+    } as TextStyle,
     dangerText: {
       color: colors.RED,
     },
@@ -221,10 +221,9 @@ const styling = () =>
       padding: 15,
     },
     titleText: {
-      fontSize: 16,
-      fontWeight: '500',
+      font: getFontStyle('titleBody', 'small', 'medium'),
       color: colors.BLACK,
-    },
+    } as TextStyle,
     border: {
       borderBottomColor: colors.BLACK,
       borderBottomWidth: 1,
@@ -238,8 +237,8 @@ const styling = () =>
     },
     checkBoxText: {
       color: colors.BLACK,
-      fontSize: 15,
-    },
+      fonts: getFontStyle('titleBody', 'small', 'medium'),
+    } as TextStyle,
     filterContainer: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -248,12 +247,10 @@ const styling = () =>
     },
     filterText: {
       color: colors.BLACK,
-      fontSize: 15,
-      fontWeight: '500',
-    },
+      fonts: getFontStyle('titleBody', 'small', 'medium'),
+    } as TextStyle,
     filterSelectedText: {
       color: colors.GREEN,
-      fontSize: 15,
-      fontWeight: '500',
-    },
+      fonts: getFontStyle('titleBody', 'small', 'medium'),
+    } as TextStyle,
   });

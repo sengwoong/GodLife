@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, View, Pressable, Text } from 'react-native';
+import { FlatList, StyleSheet, View, Pressable, Text, ViewStyle, TextStyle } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import DayOfWeeks from './DayOfWeeks';
 import DateBox from './DateBox';
 import YearSelector from './YearSelector';
 import CalendarHomeHeaderRight from './CalendarHomeHeaderRight';
-import { colors } from '../../constants'; 
+import { colors, getFontStyle } from '../../constants'; 
 import { isSameAsCurrentDate, MonthYear } from '../../../utils';
 interface Schedule {
   content: string;
@@ -63,7 +63,6 @@ function Calendar<T>({
           <Text>next</Text>
         </Pressable>
         </View>   
-
       </View>
 
       {/* 요일 표시 */}
@@ -78,7 +77,6 @@ function Calendar<T>({
           }))}
           renderItem={({ item }) => (
             <View>
-              
               <DateBox
                 date={item.date}
                 isToday={isSameAsCurrentDate(year, month, item.date)}
@@ -113,36 +111,34 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2, 
     shadowRadius: 4, 
     elevation: 6, 
-  
-  },
+  } as ViewStyle,
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginHorizontal: 25,
     marginVertical: 16,
-  },
+  } as ViewStyle,
   monthYearContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-  },
+  } as ViewStyle,
   monthButtonContainer: {
     flexDirection: 'row',
-  },
+  } as ViewStyle,
   monthButton: {
     padding: 10,
-  },
+  } as ViewStyle,
   titleText: {
-    fontSize: 18,
-    fontWeight: '500',
+    fonts : getFontStyle('titleBody', 'small', 'medium'),
     color: colors.BLACK,
-  },
+  } as TextStyle,
   bodyContainer: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.WHITE,
     backgroundColor: colors.WHITE,
-  },
+  } as ViewStyle,
   
 });
 

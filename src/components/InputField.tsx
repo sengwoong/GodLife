@@ -7,10 +7,11 @@ import {
   TextInputProps,
   Text,
   Pressable,
+  TextStyle,
 } from 'react-native';
 
 import { mergeRefs } from '../../utils/common';
-import { colors } from '../constants'; 
+import { colors, getFontStyle } from '../constants'; 
 
 interface InputFieldProps extends TextInputProps {
   disabled?: boolean;
@@ -76,10 +77,8 @@ const styling = () =>
       paddingBottom: deviceHeight > 700 ? 45 : 30,
     },
     input: {
-      fontSize: 16,
-      color: colors.BLACK,
-      padding: 0,
-    },
+      fonts : getFontStyle('titleBody', 'small', 'medium'),
+    } as TextStyle,
     innerContainer: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -95,9 +94,9 @@ const styling = () =>
     },
     error: {
       color: colors.RED,
-      fontSize: 12,
+      fonts : getFontStyle('body', 'small', 'medium'),
       paddingTop: 5,
-    },
+    }  as TextStyle,
   });
 
 export default InputField;

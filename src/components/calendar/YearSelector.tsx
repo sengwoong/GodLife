@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Pressable, StyleSheet, Text, TextStyle, View} from 'react-native';
 
-import { colors, numbers } from '../../constants/index';
+import { colors, getFontStyle, numbers } from '../../constants/index';
 import CustomButton from '../CustomButton';
 
 interface YearSelectorProps {
@@ -118,14 +118,13 @@ const styling = () =>
       borderColor: colors.RED,
     },
     yearText: {
-      fontSize: 16,
-      fontWeight: '500',
+      fonts : getFontStyle('titleBody', 'small', 'medium'),
       color: colors.GRAY,
-    },
+    } as TextStyle,
     currentYearText: {
       color: colors.WHITE,
-      fontWeight: '600',
-    },
+      fonts : getFontStyle('titleBody', 'small', 'bold'),
+    } as TextStyle,
     closeButton: {
       flex: 1,
       flexDirection: 'row',

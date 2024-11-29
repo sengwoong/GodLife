@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import { StyleSheet, Text, SafeAreaView, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, TextStyle } from 'react-native';
 import Calendar from '../../components/calendar/Calendar';
 import { getMonthYearDetails } from '../../../utils';
 import EventList from '../../components/EventList';
 import CustomButton from '../../components/CustomButton';
-import { colors } from '../../constants/index';  
+import { colors, getFontStyle } from '../../constants/index';  
 
 function CalendarHomeScreen() {
   const { year: initialYear, month: initialMonth, firstDOW: initialDay } = getMonthYearDetails();
@@ -90,14 +90,12 @@ function CalendarHomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   },
   SelectDayText: {
-    fontSize: 32,
+    fonts: getFontStyle('display', 'small', 'medium'),
     color: colors.BLACK,
-    fontWeight: '600',
     margin: 10,
-  },
+  } as TextStyle,
   rowContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

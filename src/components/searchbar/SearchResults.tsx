@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import { colors } from '../../constants';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextStyle } from 'react-native';
+import { colors, getFontStyle } from '../../constants';
 
 interface SearchResultsProps {
   searchText: string;
@@ -75,26 +75,24 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
   },
   columnTitle: {
-    fontWeight: 'bold',
-    fontSize: 16,
+    fonts : getFontStyle('titleBody', 'large', 'bold'),
     marginBottom: 10,
-  },
+  } as TextStyle,
   suggestionItem: {
-    fontSize: 14,
-    paddingVertical: 5,
+    fonts : getFontStyle('titleBody', 'mediumSmall', 'bold'),
     color: colors.GRAY,
-  },
+  } as TextStyle,
   highlightedItem: {
-    fontSize: 14,
+    fonts : getFontStyle('titleBody', 'mediumSmall', 'bold'),
     paddingVertical: 5,
     color: colors.BLACK,
     fontWeight: 'bold',
-  },
+  } as TextStyle,
   recentItem: {
-    fontSize: 14,
+    fonts : getFontStyle('titleBody', 'mediumSmall', 'bold'),
     paddingVertical: 5,
     color: colors.BLACK,
-  },
+  } as TextStyle,
 });
 
 export default SearchResults;

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import { Pressable, PressableProps, StyleSheet, Text } from 'react-native';
-import { colors } from '../../constants/index';
+import { Pressable, PressableProps, StyleSheet, Text, TextStyle } from 'react-native';
+import { colors, getFontStyle } from '../../constants/index';
 
 interface HeaderButtonProps extends PressableProps {
   labelText?: string;
@@ -37,10 +37,9 @@ const styling = () =>
       paddingHorizontal: 30,
     },
     text: {
-      fontSize: 15,
-      fontWeight: '500',
+      fonts : getFontStyle('titleBody', 'small', 'bold'),
       color: colors.RED,
-    },
+    } as TextStyle,
     textError: {
       color: colors.GRAY,
     },

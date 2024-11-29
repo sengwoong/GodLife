@@ -1,6 +1,6 @@
 import React from 'react';
-import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
-import { colors } from '../../constants/index';  
+import {Dimensions, Pressable, StyleSheet, Text, TextStyle, View} from 'react-native';
+import { colors, getFontStyle } from '../../constants/index';  
 
 const BASE_DATE_SIZE = 28;
 const SELECTED_DATE_INCREMENT = 10;
@@ -83,9 +83,8 @@ const styling = () =>
     },
 
     dateText: {
-      fontSize: 17,
-      color: colors.BLACK,
-    },
+      fonts: getFontStyle('titleBody', 'small', 'medium'),
+    } as TextStyle,
 
     todayText: {
       color: colors.RED,

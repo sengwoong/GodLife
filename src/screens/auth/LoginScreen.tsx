@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextStyle, View } from 'react-native';
 import InputField from '../../components/InputField';
 import CustomButton from '../../components/CustomButton';
 import { TextInput } from 'react-native-gesture-handler';
 import useForm from '../../hooks/useForm';
 import { validateLogin } from '../../../utils/validate';
-import { colors } from '../../constants';
+import { colors, getFontStyle } from '../../constants';
 
 function LoginScreen() {
   const passwordRef = useRef<TextInput | null>(null);
@@ -67,18 +67,17 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   largeText: {
-    fontSize: 72,
-    fontWeight: 'bold',
+    fonts : getFontStyle('display', 'large', 'medium'),
     color: colors.BLACK,
     textAlign: 'center',
-  },
+  }as TextStyle,
   smallContainer: {
     marginTop: 16,
   },
   smallText: {
-    fontSize: 22,
+    fonts : getFontStyle('title', 'medium', 'medium'),
     textAlign: 'center',
-  },
+  }as TextStyle,
   loginContainer: {
     gap: 8, 
   },

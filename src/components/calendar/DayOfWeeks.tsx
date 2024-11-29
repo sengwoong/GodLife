@@ -1,6 +1,6 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import { colors } from '../../constants/index';  
+import {Dimensions, StyleSheet, Text, TextStyle, View} from 'react-native';
+import { colors, getFontStyle } from '../../constants/index';  
 
 const deviceWidth = Dimensions.get('window').width;
 
@@ -38,9 +38,9 @@ const styling = () =>
       alignItems: 'center',
     },
     text: {
-      fontSize: 12,
+      fonts: getFontStyle('body', 'medium', 'medium'),
       color: colors.BLACK,
-    },
+    } as TextStyle,
     saturdayText: {
       color: colors.BLUE,
     },

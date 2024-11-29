@@ -11,7 +11,7 @@ import {
   PressableProps,
 } from 'react-native';
 
-import { colors } from '../constants/index';  
+import { colors,getFontStyle } from '../constants/index';  
 
 interface CustomButtonProps extends PressableProps {
   label: string;
@@ -150,11 +150,10 @@ const styles = StyleSheet.create({
     padding:10,
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-  } as ViewStyle,
+  } as TextStyle,
 
   text: {
-    fontSize: 16,
-    fontWeight: '700',
+    fonts : getFontStyle('body','medium','medium'), 
     color: colors.WHITE,
   } as TextStyle,
 });

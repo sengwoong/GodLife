@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
-import { handleSearch, handleSelectSuggestion } from './searchUtils';
+import { View, TextInput, StyleSheet, TextStyle } from 'react-native';
+import { handleSearch, handleSelectSuggestion } from '../../../utils/searchUtils';
 import SearchResults from './SearchResults';
-import { colors } from '../../constants';
+import { colors, getFontStyle } from '../../constants';
 interface SearchBarProps {
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
   searchText: string;
@@ -37,7 +37,7 @@ const SearchBar: React.FC<SearchBarProps> = ({setSearchText,searchText}) => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.searchBar}
+        style={[styles.searchBar, styles.SearchBarInput]}
         placeholder="검색어를 입력하세요"
         value={searchText}
         onChangeText={onSearchChange}
@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     paddingHorizontal: 15,
     height: 40,
-    fontSize: 16,
     marginBottom: 10,
     elevation: 3,
     shadowColor:  colors.BLACK,
@@ -70,6 +69,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3.84,
   },
+  SearchBarInput: {
+    font : getFontStyle('titleBody', 'small', 'medium'),
+  } as TextStyle,
 });
 
 export default SearchBar;

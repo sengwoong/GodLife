@@ -1,8 +1,8 @@
 import React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextStyle, View } from 'react-native';
 import { AuthStackParamList } from '../../navigations/stack/AuthStackNavigator';
-import { authNavigations, colors } from '../../constants';
+import { authNavigations, colors, getFontStyle } from '../../constants';
 import CustomButton from '../../components/CustomButton';
 import ImageSlider from '../../components/ImageSlider';
 
@@ -53,19 +53,17 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   largeText: {
-    fontSize: 32,
-    fontWeight: 'bold',
+    fonts : getFontStyle('titleBody', 'large', 'bold'),
     textAlign: 'center',
     color: colors.BLACK,
-    
-  },
+  } as TextStyle,
   smallContainer:{
     marginTop: 24,
   },
   smallText: {
-    fontSize: 14,
+    fonts : getFontStyle('body', 'medium', 'medium'),
     textAlign: 'center',
-  },
+  } as TextStyle,
   buttonContainer: {
     gap: 16,
     justifyContent: 'flex-end',
