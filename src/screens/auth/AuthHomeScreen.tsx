@@ -31,7 +31,6 @@ function AuthHomeScreen({ navigation }: AuthHomeScreenProps) {
       <View style={styles.buttonContainer}>
         <CustomButton
           label="로그인화면으로 이동"
-          style={{ marginBottom: 32 }}
           onPress={() => navigation.navigate(authNavigations.LOGIN)}
         />
         <CustomButton
@@ -68,6 +67,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonContainer: {
+    gap: 16,
     justifyContent: 'flex-end',
     marginVertical: 60,
   },
