@@ -56,19 +56,20 @@ const styling = () =>
     infoText: {
       color: colors.GRAY, 
       backgroundColor: colors.BLACK, 
-      font : getFontStyle('body', 'medium', 'regular'),
+      ... getFontStyle('body', 'medium', 'regular'),
       padding:5,
       borderRadius: 20,
       alignSelf: 'flex-start',
       overflow: 'hidden',
+      left: -4,
     } as TextStyle,
     titleText: {
       color: colors.BLACK,
-      font : getFontStyle('body', 'medium', 'bold'),
+     ... getFontStyle('titleBody', 'large', 'bold'),
     } as TextStyle, 
     contentText: {
       color: colors.BLACK,
-      fontSize: 16,
+      ... getFontStyle('body', 'medium', 'regular'),
       marginTop: 5,
     } as ViewStyle,
   });

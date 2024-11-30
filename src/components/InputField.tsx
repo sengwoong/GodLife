@@ -20,7 +20,6 @@ interface InputFieldProps extends TextInputProps {
   icon?: ReactNode;
 }
 
-const deviceHeight = Dimensions.get('screen').height;
 
 const InputField = forwardRef(
   (
@@ -41,7 +40,6 @@ const InputField = forwardRef(
           style={[
             styles.container,
             disabled && styles.disabled,
-            props.multiline && styles.multiLine,
             touched && Boolean(error) && styles.inputError,
           ]}>
           <View style={Boolean(icon) && styles.innerContainer}>
@@ -71,18 +69,13 @@ const styling = () =>
     container: {
       borderWidth: 1,
       borderColor: colors.GRAY,
-      padding: deviceHeight > 700 ? 15 : 10,
-    },
-    multiLine: {
-      paddingBottom: deviceHeight > 700 ? 45 : 30,
     },
     input: {
-      fonts : getFontStyle('titleBody', 'small', 'medium'),
+      ... getFontStyle('titleBody', 'small', 'medium'),
     } as TextStyle,
     innerContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 5,
     },
     disabled: {
       backgroundColor: colors.GRAY,
@@ -94,7 +87,7 @@ const styling = () =>
     },
     error: {
       color: colors.RED,
-      fonts : getFontStyle('body', 'small', 'medium'),
+      ... getFontStyle('body', 'small', 'medium'),
       paddingTop: 5,
     }  as TextStyle,
   });

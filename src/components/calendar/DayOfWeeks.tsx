@@ -38,7 +38,7 @@ const styling = () =>
       alignItems: 'center',
     },
     text: {
-      fonts: getFontStyle('body', 'medium', 'medium'),
+      ... getFontStyle('body', 'medium', 'medium'),
       color: colors.BLACK,
     } as TextStyle,
     saturdayText: {

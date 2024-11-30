@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   SelectDayText: {
-    fonts: getFontStyle('display', 'small', 'medium'),
+    ... getFontStyle('display', 'small', 'bold'),
     color: colors.BLACK,
     margin: 10,
   } as TextStyle,

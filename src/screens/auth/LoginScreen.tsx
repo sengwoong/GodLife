@@ -9,7 +9,7 @@ import { colors, getFontStyle } from '../../constants';
 
 function LoginScreen() {
   const passwordRef = useRef<TextInput | null>(null);
-  
+
   const login = useForm({
     initialValue: { email: '', password: '' },
     validate: validateLogin,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   largeText: {
-    fonts : getFontStyle('display', 'large', 'medium'),
+    ... getFontStyle('display', 'large', 'bold'),
     color: colors.BLACK,
     textAlign: 'center',
   }as TextStyle,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   smallText: {
-    fonts : getFontStyle('title', 'medium', 'medium'),
+    ... getFontStyle('title', 'medium', 'medium'),
     textAlign: 'center',
   }as TextStyle,
   loginContainer: {

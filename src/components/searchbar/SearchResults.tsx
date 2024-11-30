@@ -75,21 +75,21 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
   },
   columnTitle: {
-    fonts : getFontStyle('titleBody', 'large', 'bold'),
+    ... getFontStyle('titleBody', 'large', 'bold'),
     marginBottom: 10,
   } as TextStyle,
   suggestionItem: {
-    fonts : getFontStyle('titleBody', 'mediumSmall', 'bold'),
+    ... getFontStyle('titleBody', 'mediumSmall', 'bold'),
     color: colors.GRAY,
   } as TextStyle,
   highlightedItem: {
-    fonts : getFontStyle('titleBody', 'mediumSmall', 'bold'),
+    ... getFontStyle('titleBody', 'mediumSmall', 'bold'),
     paddingVertical: 5,
     color: colors.BLACK,
     fontWeight: 'bold',
   } as TextStyle,
   recentItem: {
-    fonts : getFontStyle('titleBody', 'mediumSmall', 'bold'),
+    ... getFontStyle('titleBody', 'mediumSmall', 'bold'),
     paddingVertical: 5,
     color: colors.BLACK,
   } as TextStyle,

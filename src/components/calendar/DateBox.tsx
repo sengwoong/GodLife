@@ -83,7 +83,7 @@ const styling = () =>
     },
 
     dateText: {
-      fonts: getFontStyle('titleBody', 'small', 'medium'),
+      ... getFontStyle('titleBody', 'small', 'medium'),
     } as TextStyle,
 
     todayText: {

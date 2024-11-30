@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   } as TextStyle,
 
   text: {
-    fonts : getFontStyle('body','medium','medium'), 
+   ... getFontStyle('body','medium','medium'), 
     color: colors.WHITE,
   } as TextStyle,
 });

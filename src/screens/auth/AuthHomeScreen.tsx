@@ -43,6 +43,7 @@ function AuthHomeScreen({ navigation }: AuthHomeScreenProps) {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   largeText: {
-    fonts : getFontStyle('titleBody', 'large', 'bold'),
+    ...getFontStyle('display', 'small', 'bold') ,
     textAlign: 'center',
     color: colors.BLACK,
   } as TextStyle,
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   smallText: {
-    fonts : getFontStyle('body', 'medium', 'medium'),
+    ...getFontStyle('titleBody', 'medium', 'medium') ,
     textAlign: 'center',
   } as TextStyle,
   buttonContainer: {

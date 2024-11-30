@@ -72,12 +72,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   titleText: {
-    fontWeight: 'bold',
-    fonts:getFontStyle('titleBody', 'small', 'medium'),
+    ... getFontStyle('titleBody', 'small', 'bold'),
     color: colors.BLACK,
   } as TextStyle,
   contentText: {
-    fonts:getFontStyle('titleBody', 'small', 'medium'),
+    ... getFontStyle('titleBody', 'small', 'medium'),
     color: colors.BLACK,
   } as TextStyle,
   button: {

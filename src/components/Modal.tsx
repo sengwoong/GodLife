@@ -210,7 +210,7 @@ const styling = () =>
       backgroundColor: colorHex.LIGHT_BLACK,
     },
     optionText: {
-      fonts : getFontStyle('titleBody', 'small', 'medium'),
+      ... getFontStyle('titleBody', 'small', 'medium'),
       color: colors.BLACK,
     } as TextStyle,
     dangerText: {
@@ -221,7 +221,7 @@ const styling = () =>
       padding: 15,
     },
     titleText: {
-      font: getFontStyle('titleBody', 'small', 'medium'),
+      ... getFontStyle('titleBody', 'small', 'medium'),
       color: colors.BLACK,
     } as TextStyle,
     border: {
@@ -237,7 +237,7 @@ const styling = () =>
     },
     checkBoxText: {
       color: colors.BLACK,
-      fonts: getFontStyle('titleBody', 'small', 'medium'),
+      ... getFontStyle('titleBody', 'small', 'medium'),
     } as TextStyle,
     filterContainer: {
       flexDirection: 'row',
@@ -247,10 +247,10 @@ const styling = () =>
     },
     filterText: {
       color: colors.BLACK,
-      fonts: getFontStyle('titleBody', 'small', 'medium'),
+      ... getFontStyle('titleBody', 'small', 'medium'),
     } as TextStyle,
     filterSelectedText: {
       color: colors.GREEN,
-      fonts: getFontStyle('titleBody', 'small', 'medium'),
+      ... getFontStyle('titleBody', 'small', 'medium'),
     } as TextStyle,
   });

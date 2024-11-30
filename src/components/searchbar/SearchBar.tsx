@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
   },
   SearchBarInput: {
-    font : getFontStyle('titleBody', 'small', 'medium'),
+    ... getFontStyle('titleBody', 'small', 'medium'),
   } as TextStyle,
 });
 

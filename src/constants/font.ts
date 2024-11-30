@@ -5,38 +5,38 @@ const fontWeights: { [key in 'regular' | 'medium' | 'bold']: number } = {
   };
   
   const displayFontSizes = {
-    displayLarge: '56px',
-    displayMedium: '48px',
-    displayMediumSmall: '40px',
-    displaySmall: '36px',
+    displayLarge: 56,
+    displayMedium: 48,
+    displayMediumSmall: 40,
+    displaySmall: 36,
   } as const;
   
   const titleFontSizes = {
-    titleLarge: '24px',
-    titleMedium: '20px',
-    titleMediumSmall: '18px',
-    titleSmall: '16px',
+    titleLarge: 24,
+    titleMedium: 20,
+    titleMediumSmall: 18,
+    titleSmall: 16,
   } as const;
   
   const bodyFontSizes = {
-    bodyLarge: '13px',
-    bodyMedium: '12px',
-    bodySmall: '11px',
+    bodyLarge: 13,
+    bodyMedium: 12,
+    bodySmall: 11,
   } as const;
   
   const titleBodyFontSizes = {
-    titleBodyLarge: '16px',
-    titleBodyMedium: '15px',
-    titleBodyMediumSmall: '14px',
-    titleBodySmall: '13px',
+    titleBodyLarge: 16,
+    titleBodyMedium: 15,
+    titleBodyMediumSmall: 14,
+    titleBodySmall: 13,
   } as const;
   
   const letterSpacing = {
-    english: {
-      display: '0.05em',
-      title: '0.04em',
-      body: '0.03em',
-      titleBody: '0.02em',
+    basicLetter: {
+      display: 0.05,
+      title: 0.04,
+      body: 0.03,
+      titleBody: 0.02,
     },
   } as const;
   
@@ -46,7 +46,7 @@ const fontWeights: { [key in 'regular' | 'medium' | 'bold']: number } = {
     weight: 'regular' | 'medium' | 'bold'
   ) {
   
-    let fontSize: string;
+    let fontSize: number;
     switch (category) {
       case 'display':
         fontSize = displayFontSizes[`display${capitalizeFirstLetter(size)}` as keyof typeof displayFontSizes];
@@ -64,28 +64,28 @@ const fontWeights: { [key in 'regular' | 'medium' | 'bold']: number } = {
   
     const fontWeight = fontWeights[weight];
   
-    let letterSpacingValue: string;
+    let letterSpacingValue: number;
     switch (category) {
       case 'display':
-        letterSpacingValue = letterSpacing.english.display;
+        letterSpacingValue = letterSpacing.basicLetter.display;
         break;
       case 'title':
-        letterSpacingValue = letterSpacing.english.title;
+        letterSpacingValue = letterSpacing.basicLetter.title;
         break;
       case 'body':
-        letterSpacingValue = letterSpacing.english.body;
+        letterSpacingValue = letterSpacing.basicLetter.body;
         break;
       case 'titleBody':
-        letterSpacingValue = letterSpacing.english.titleBody;
+        letterSpacingValue = letterSpacing.basicLetter.titleBody;
         break;
     }
   
     return {
-      fontSize,
-      fontWeight,
-      letterSpacing: letterSpacingValue,
-    };
+        fontSize: fontSize, 
+        fontWeight: String(fontWeight), 
+        letterSpacing: letterSpacingValue, 
   }
+}
   
   function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);

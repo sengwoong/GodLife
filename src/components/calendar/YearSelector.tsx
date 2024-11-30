@@ -118,12 +118,12 @@ const styling = () =>
       borderColor: colors.RED,
     },
     yearText: {
-      fonts : getFontStyle('titleBody', 'small', 'medium'),
+      ... getFontStyle('titleBody', 'small', 'medium'),
       color: colors.GRAY,
     } as TextStyle,
     currentYearText: {
       color: colors.WHITE,
-      fonts : getFontStyle('titleBody', 'small', 'bold'),
+      ... getFontStyle('titleBody', 'small', 'bold'),
     } as TextStyle,
     closeButton: {
       flex: 1,

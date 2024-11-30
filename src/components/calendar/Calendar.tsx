@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     padding: 10,
   } as ViewStyle,
   titleText: {
-    fonts : getFontStyle('titleBody', 'small', 'medium'),
+    ... getFontStyle('titleBody', 'small', 'medium'),
     color: colors.BLACK,
   } as TextStyle,
   bodyContainer: {

@@ -37,7 +37,7 @@ const styling = () =>
       paddingHorizontal: 30,
     },
     text: {
-      fonts : getFontStyle('titleBody', 'small', 'bold'),
+      ... getFontStyle('titleBody', 'small', 'bold'),
       color: colors.RED,
     } as TextStyle,
     textError: {
