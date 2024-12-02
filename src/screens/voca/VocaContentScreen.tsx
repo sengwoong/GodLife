@@ -20,7 +20,7 @@ function VocaContentScreen() {
         day: 10,
       },
       {
-        id: 31,
+        id: 30,
         title: '친구 생일',
         content:
           '친구 생일qwfoiphqwhfiqwoipfqhwipfhnqpie;ofhw;ahf;oipuauehf;opiwaeoifhwahfoiphewoiheoiewajhnflokwalkfwaefhjlk',
@@ -28,7 +28,7 @@ function VocaContentScreen() {
         day: 20,
       },
       {
-        id: 220,
+        id: 30,
         title: '친구 생일',
         content:
           '친구 생일',
@@ -36,7 +36,7 @@ function VocaContentScreen() {
         day: 20,
       },
       {
-        id: 330,
+        id: 30,
         title: '친구 생일',
         content:
           '친구 생일',
@@ -69,6 +69,7 @@ function VocaContentScreen() {
                 </Text>
               </View>
             </View>
+            <Text>{item.content}</Text>
           </View>
         )}
       />

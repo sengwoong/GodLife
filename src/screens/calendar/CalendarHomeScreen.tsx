@@ -1,28 +1,15 @@
 import React, { useState, useMemo } from 'react';
-import { StyleSheet, Text, SafeAreaView, View, TextStyle, Button } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, TextStyle } from 'react-native';
 import Calendar from '../../components/calendar/Calendar';
 import { getMonthYearDetails } from '../../../utils';
 import EventList from '../../components/EventList';
 import CustomButton from '../../components/CustomButton';
-import { calendarNavigations, colors, getFontStyle } from '../../constants/index';  
-import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { calendarStackParamList } from '../../navigations/stack/CalendarStackNavigator';
-import { DrawerNavigationProp } from '@react-navigation/drawer';
-import { MainDrawerParamList } from '../../navigations/drawer/MainDrawerNavigator';
-
-
-type Navigation = CompositeNavigationProp<
-  StackNavigationProp<calendarStackParamList>,
-  DrawerNavigationProp<MainDrawerParamList>
->;
+import { colors, getFontStyle } from '../../constants/index';  
 
 function CalendarHomeScreen() {
   const { year: initialYear, month: initialMonth, firstDOW: initialDay } = getMonthYearDetails();
-  const navigation = useNavigation<Navigation>();
 
   const [year, setYear] = useState(initialYear);
-  const [pressItem,setPressItem] = useState(0);
   const [month, setMonth] = useState(initialMonth);
   const [day, setDay] = useState(initialDay);
   interface Schedule {
@@ -65,12 +52,6 @@ function CalendarHomeScreen() {
     setYear(selectYear)
   };
 
-  const onChangePressItem = (itemindex: number) => {
-    navigation.navigate(calendarNavigations.CALENDAREDIT, {calendaritemIndex: itemindex});
-  };
-
-  
-
   const moveToToday = () => {
     const { year, month, firstDOW } = getMonthYearDetails();
     setYear(year);
@@ -80,7 +61,6 @@ function CalendarHomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-
       <Calendar
         monthYear={monthYear} 
         selectedDate={day} 
@@ -98,11 +78,11 @@ function CalendarHomeScreen() {
             label='생성하기' 
             color='BLACK' 
             shape='rounded' 
-            style={{ flexWrap: 'nowrap'  }} 
+            style={{ flexWrap: 'nowrap',  }} 
           />
       </View>
 
-      <EventList posts={schedules} onChangePressItem={onChangePressItem} />
+      <EventList posts={schedules} />
     </SafeAreaView>
   );
 }
