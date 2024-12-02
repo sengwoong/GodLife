@@ -1,6 +1,3 @@
-import { colors } from './colors';
-import { margins } from './margin';
-
 export * from './colors';
 export * from './navigations';
 export * from './numbers';

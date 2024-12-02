@@ -3,12 +3,12 @@ import { ScrollView, StyleSheet, View, Pressable, Text, TextStyle, ViewStyle } f
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, getFontStyle } from '../constants/index';
 
-function EventList({ posts }: { posts: any[] }) {
+function EventList({ posts,onChangePressItem }: { posts: any[],onChangePressItem: (itmeIndex: number) => void }) {
   const styles = styling();
   const insets = useSafeAreaInsets();
 
-  const handlePressItem = (id: number) => {
-    console.log(`Item pressed: ${id}`);
+  const handlePressItem = (itmeIndex: number) => {
+    onChangePressItem(itmeIndex);
   };
 
   return (
