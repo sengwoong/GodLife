@@ -10,7 +10,7 @@ function HomeHeaderLeft() {
     return (
        <TouchableOpacity 
          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
-          <Icon name="menu" size={32} color="red" />
+          <Icon name="menu" size={32} color="black" />
        </TouchableOpacity>
      );
 }
