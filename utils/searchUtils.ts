@@ -5,7 +5,6 @@ export const filterAndSortSuggestions = (text: string, suggestions: string[]): s
       .sort((a, b) => (a.toLowerCase().startsWith(text.toLowerCase()) ? -1 : 1)); // 입력값으로 시작하는 항목 우선 정렬
   };
   
-// 검색 필터링 함수
 export const handleSearch = (
   text: string,
   initialSuggestions: string[],
@@ -19,7 +18,6 @@ export const handleSearch = (
   }
 };
 
-// 추천 단어 선택 시 처리
 export const handleSelectSuggestion = (
   suggestion: string,
   recentSearches: string[],

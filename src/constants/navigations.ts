@@ -2,14 +2,36 @@ const authNavigations = {
   HOME: 'Home',
   LOGIN: 'Login',
   SIGNUP: 'Signup',
-  AUTH: 'Auth',  
-  MAIN: 'Main',
-  SETTINGS: 'Settings',
-  PlayList: 'PlayList',
-  CALENDAR: 'Calendar',
-  SETTING:'Setting',
-  VOCA: 'Voca',
-  FEED: 'Feed',
   } as const;
+
+const drawerNavigations = {
+    PlayList: 'PlayList',
+    CALENDAR: 'Calendar',
+    SETTING:'Setting',
+    VOCA: 'Voca',
+    MAIN: 'Main',
+  } as const;
+
+const vocaNavigations = {
+    VOCAMAIN: 'VocaMainMain',
+    VOCACONTENT: 'VocaContent',
+    VOCACONTENTEDIT: 'VocaContentEdit',
+    } as const;
   
-  export { authNavigations };
+const calendarNavigations = {
+    CALENDAR: 'CalendarMain',
+    CALENDAREDIT: 'CalendarEdit',
+    } as const;
+
+const PlayListNavigations = {
+    PLAYLIST: 'PlayListMain',
+    PLAYLISTCONTENT: 'PlayListContent',
+    PLAYLISTEDIT: 'PlayListEdit',
+    } as const;
+    
+const mainNavigations = {
+  MAIN: 'MainPage',
+  FEED: 'MarketFeed',
+  } as const;
+    
+  export { vocaNavigations,authNavigations,drawerNavigations,calendarNavigations,PlayListNavigations,mainNavigations };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-function FeedHomeScreen() {
+function FeedScreen() {
   return (
     <View>
       <Text>피드홈</Text>
@@ -11,4 +11,4 @@ function FeedHomeScreen() {
 
 const styles = StyleSheet.create({});
 
-export default FeedHomeScreen;
+export default FeedScreen;

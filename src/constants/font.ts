@@ -4,34 +4,34 @@ const fontWeights: { [key in 'regular' | 'medium' | 'bold']: number } = {
     bold: 700,
   };
   
-  const displayFontSizes = {
+const displayFontSizes = {
     displayLarge: 56,
     displayMedium: 48,
     displayMediumSmall: 40,
     displaySmall: 36,
   } as const;
   
-  const titleFontSizes = {
+const titleFontSizes = {
     titleLarge: 24,
     titleMedium: 20,
     titleMediumSmall: 18,
     titleSmall: 16,
   } as const;
   
-  const bodyFontSizes = {
+const bodyFontSizes = {
     bodyLarge: 13,
     bodyMedium: 12,
     bodySmall: 11,
   } as const;
   
-  const titleBodyFontSizes = {
+const titleBodyFontSizes = {
     titleBodyLarge: 16,
     titleBodyMedium: 15,
     titleBodyMediumSmall: 14,
     titleBodySmall: 13,
   } as const;
   
-  const letterSpacing = {
+const letterSpacing = {
     basicLetter: {
       display: 0.05,
       title: 0.04,
@@ -39,8 +39,8 @@ const fontWeights: { [key in 'regular' | 'medium' | 'bold']: number } = {
       titleBody: 0.02,
     },
   } as const;
-  
-  function getFontStyle(
+
+function getFontStyle(
     category: 'display' | 'title' | 'body' | 'titleBody',
     size: 'large' | 'medium' | 'mediumSmall' | 'small',
     weight: 'regular' | 'medium' | 'bold'
@@ -87,7 +87,7 @@ const fontWeights: { [key in 'regular' | 'medium' | 'bold']: number } = {
   }
 }
   
-  function capitalizeFirstLetter(str: string) {
+function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
   
