@@ -10,6 +10,7 @@ import {
   Text,
   TextStyle,
   View,
+  ViewStyle,
 } from 'react-native';
 import { colors,colorHex, getFontStyle } from '../constants/index';  
 
@@ -30,7 +31,7 @@ function OptionMain({
   children,
   isVisible,
   hideOption,
-  animationType = 'slide',
+  animationType = 'none',
   ...props
 }: OptionMainProps) {
   const onClickOutSide = (event: GestureResponderEvent) => {
@@ -67,13 +68,18 @@ function Background({children}: PropsWithChildren) {
   );
 }
 
-function Container({children}: PropsWithChildren) {
+type ContainerProps = {
+  children: React.ReactNode;
+  style?: ViewStyle; 
+};
 
+
+function Container({ children, style }: ContainerProps) {
   const styles = styling();
-
-  return <View style={styles.optionContainer}>{children}</View>;
+  return <View style={[styles.optionContainer, style]}>{children}</View>;
 }
 
+export default Container;
 interface ButtonProps extends PressableProps {
   children: ReactNode;
   isDanger?: boolean;
@@ -203,11 +209,12 @@ const styling = () =>
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
+      flexGrow: 1,
       height: 50,
       gap: 5,
     },
     optionButtonPressed: {
-      backgroundColor: colorHex.LIGHT_BLACK,
+      backgroundColor: colorHex.LIGHT_GRAY,
     },
     optionText: {
       ... getFontStyle('titleBody', 'small', 'medium'),

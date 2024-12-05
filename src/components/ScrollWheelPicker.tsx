@@ -1,105 +1,100 @@
-import React, { useState, useEffect, useRef, Suspense, useLayoutEffect } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  ActivityIndicator, // 로딩 인디케이터
-} from 'react-native';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface ScrollWheelPickerProps {
-  data: number[]; // 휠에 표시할 데이터
-  onValueChange: (value: number) => void; // 선택한 값 콜백
-  selectedValue: number; // 현재 선택된 값
+  data: number[];
+  onValueChange: (value: number) => void | null;
+  selectedValue: number;
 }
 
-const ITEM_HEIGHT = 40; // 아이템 높이
+const ITEM_HEIGHT = 40;
 
 const ScrollWheelPicker: React.FC<ScrollWheelPickerProps> = ({
   data,
   onValueChange,
   selectedValue,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [isReady, setIsReady] = useState(false); // 데이터가 준비되었는지 상태 관리
+  const [currentIndex, setCurrentIndex] = useState<number>(selectedValue!);
   const flatListRef = useRef<FlatList>(null);
 
   useLayoutEffect(() => {
-    const initialIndex = data.indexOf(selectedValue);
-    if (flatListRef.current && initialIndex !== -1) {
+    const initialIndex = data.indexOf(selectedValue!);
+    if (initialIndex !== -1 && flatListRef.current) {
       flatListRef.current.scrollToOffset({
         animated: false,
         offset: initialIndex * ITEM_HEIGHT,
       });
-      setCurrentIndex(initialIndex);
     }
-    setIsReady(true); // 데이터 로딩 완료 후 렌더링 허용
   }, []);
 
-  const handleScroll = (event: any) => {
+  const handleScrollEndDrag = (event: any) => {
     const offsetY = event.nativeEvent.contentOffset.y;
     const index = Math.round(offsetY / ITEM_HEIGHT);
     setCurrentIndex(index);
-    onValueChange(data[index]);
+    onValueChange?.(data[index]);
   };
 
+  const formatNumber = (number: number) => number.toString().padStart(2, '0');
+
   return (
-    <Suspense fallback={<ActivityIndicator size="large" color="blue" />}>
-      {isReady ? (
-        <View style={styles.container}>
-          <FlatList
-            ref={flatListRef}
-            data={data}
-            keyExtractor={(index) => index.toString()}
-            snapToInterval={ITEM_HEIGHT}
-            decelerationRate="fast"
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-            onScroll={handleScroll}
-            contentContainerStyle={styles.listContainer}
-            renderItem={({ item, index }) => (
-              <TouchableOpacity
-                style={[
-                  styles.itemContainer,
-                  index === currentIndex ? styles.selectedItem : undefined, // 선택된 아이템 처리
-                ]}
-                onPress={() => onValueChange(item)} // 클릭 시 값 전달
-              >
-                <Text
-                  style={[
-                    styles.itemText,
-                    index === currentIndex && styles.selectedText,
-                  ]}
-                >
-                  {item}
-                </Text>
-              </TouchableOpacity>
-            )}
-          />
-          <View style={styles.centerLine} />
-        </View>
-      ) : (
-        <ActivityIndicator size="large" color="blue" /> // 로딩 중이면 로딩 인디케이터 표시
-      )}
-    </Suspense>
+    <View style={styles.container}>
+      <FlatList
+        ref={flatListRef}
+        data={data}
+        keyExtractor={(item) => item.toString()}
+        snapToInterval={ITEM_HEIGHT}
+        decelerationRate="fast"
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        extraData={currentIndex}
+        onMomentumScrollEnd={handleScrollEndDrag}
+        initialNumToRender={data.length}
+        maxToRenderPerBatch={data.length}
+        windowSize={data.length}
+        contentContainerStyle={styles.listContainer}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={[
+              styles.itemContainer,
+              item === selectedValue ? styles.selectedItem : undefined,
+            ]}
+            onPress={() => {
+              const index = data.indexOf(item);
+              setCurrentIndex(index); 
+              flatListRef.current?.scrollToOffset({
+                animated: true,
+                offset: index * ITEM_HEIGHT, 
+              });
+              onValueChange?.(item); 
+            }}
+          >
+            <Text
+              style={[
+                styles.itemText,
+                item === selectedValue && styles.selectedText,
+              ]}
+            >
+              {formatNumber(item)}
+            </Text>
+          </TouchableOpacity>
+        )}
+      />
+      <View style={styles.centerLine} />
+    </View>
   );
 };
 
-export default ScrollWheelPicker;
+export default React.memo(ScrollWheelPicker);
 
 const styles = StyleSheet.create({
   container: {
-    height: ITEM_HEIGHT * 5, // 5개의 아이템 높이를 기준으로 컨테이너 높이 설정
-    overflow: 'hidden', // 넘치는 부분 숨김
-    display: 'flex',
-    flex: 1,
+    height: ITEM_HEIGHT * 4,
+    overflow: 'hidden',
+    flexGrow: 1,
   },
   listContainer: {
-    paddingVertical: ITEM_HEIGHT * 2, // 상하 패딩으로 중앙값 맞추기
-    marginHorizontal: '40%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexGrow: 1,
+    paddingVertical: ITEM_HEIGHT * 1.5,
   },
   itemContainer: {
     height: ITEM_HEIGHT,
@@ -107,26 +102,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   selectedItem: {
-    backgroundColor: '#f0f0f0', // 선택된 아이템 배경색
+    backgroundColor: '#f0f0f0',
   },
   itemText: {
     fontSize: 18,
     color: 'gray',
-    justifyContent: 'center',
-    textAlign: 'center', // 텍스트를 중앙 정렬
   },
   selectedText: {
-    color: 'blue', // 선택된 텍스트 색상
+    color: 'blue',
     fontWeight: 'bold',
   },
   centerLine: {
     position: 'absolute',
-    top: ITEM_HEIGHT * 2,
+    top: ITEM_HEIGHT * 1.5,
     width: '100%',
     height: ITEM_HEIGHT,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: 'blue',
-    pointerEvents: 'none', // 터치 이벤트 무시
+    pointerEvents: 'none',
   },
 });
