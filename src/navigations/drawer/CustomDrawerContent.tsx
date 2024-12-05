@@ -12,7 +12,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import { colors } from '../../constants';
+import { colors, spacing } from '../../constants';
 
 
 function CustomDrawerContent(props: DrawerContentComponentProps) {
@@ -40,7 +40,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
         onPress={handleLogout}
         style={{
           alignItems: 'flex-end',
-          padding: 10,
+          padding: spacing.M12,
         }}>
         <Text>로그아웃</Text>
       </Pressable>
@@ -60,15 +60,15 @@ const styles = StyleSheet.create({
   },
   userInfoContainer: {
     alignItems: 'center',
-    marginTop: 15,
-    marginBottom: 30,
-    marginHorizontal: 15,
+    marginTop: spacing.M16,
+    marginBottom: spacing.M32,
+    marginHorizontal: spacing.M16,
   },
   userImageContainer: {
     width: 70,
     height: 70,
     borderRadius: 35,
-    marginBottom: 10,
+    marginBottom: spacing.M12,
   },
   userImage: {
     width: '100%',

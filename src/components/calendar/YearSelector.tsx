@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {FlatList, Pressable, StyleSheet, Text, TextStyle, View} from 'react-native';
 
-import { colors, getFontStyle, numbers } from '../../constants/index';
+import { colors, getFontStyle, spacing, numbers } from '../../constants/index';
 import CustomButton from '../CustomButton';
 
 interface YearSelectorProps {
@@ -105,8 +105,8 @@ const styling = () =>
     yearButton: {
       width: 80,
       height: 40,
-      padding: 10,
-      margin: 5,
+      padding: spacing.M12,
+      margin: spacing.M4,
       borderWidth: 1,
       borderColor: colors.GRAY,
       borderRadius: 2,
@@ -129,7 +129,7 @@ const styling = () =>
       flex: 1,
       flexDirection: 'row',
       backgroundColor: colors.WHITE,
-      padding: 15,
+      padding: spacing.M16,
       alignItems: 'center',
       justifyContent: 'center',
       borderTopWidth: 1,

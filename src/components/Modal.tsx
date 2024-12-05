@@ -12,7 +12,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { colors,colorHex, getFontStyle } from '../constants/index';  
+import { colors,colorHex, getFontStyle, spacing } from '../constants/index';  
 
 interface OptionContextValue {
   onClickOutSide?: (event: GestureResponderEvent) => void;
@@ -225,7 +225,7 @@ const styling = () =>
     },
     titleContainer: {
       alignItems: 'center',
-      padding: 15,
+      padding: spacing.M16,
     },
     titleText: {
       ... getFontStyle('titleBody', 'small', 'medium'),
@@ -238,8 +238,8 @@ const styling = () =>
     checkBoxContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      paddingVertical: 10,
-      paddingHorizontal: 30,
+      paddingVertical: spacing.M12,
+      paddingHorizontal: spacing.M32,
       gap: 10,
     },
     checkBoxText: {
@@ -249,7 +249,7 @@ const styling = () =>
     filterContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      padding: 10,
+      padding: spacing.M12,
       gap: 5,
     },
     filterText: {

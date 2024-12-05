@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, SafeAreaView, TextStyle } from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import SearchBar from '../../components/searchbar/SearchBar';
-import { getFontStyle } from '../../constants';
+import { getFontStyle, spacing } from '../../constants';
 
 function VocaContentScreen() {
 
@@ -81,13 +81,13 @@ function VocaContentScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: spacing.M20,
     backgroundColor: '#f5f5f5',
     justifyContent: 'space-between', 
   },
   row: {
     flexDirection: 'row',
-    marginBottom: 1,
+    marginBottom: spacing.M2,
     overflow: 'hidden',
     backgroundColor: '#ffffff',
     elevation: 2,
@@ -95,13 +95,13 @@ const styles = StyleSheet.create({
   titleContainer: {
     width: '30%',
     backgroundColor: '#d3d3d3',
-    padding: 10,
+    padding: spacing.M12,
     justifyContent: 'center',
   },
   contentContainer: {
     width: '70%',
     backgroundColor: '#ffffff',
-    padding: 10,
+    padding: spacing.M12,
   },
   titleText: {
     ... getFontStyle('titleBody', 'small', 'bold'),

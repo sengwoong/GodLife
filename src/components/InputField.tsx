@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { mergeRefs } from '../../utils/common';
-import { colors, getFontStyle } from '../constants'; 
+import { colors, getFontStyle, spacing } from '../constants'; 
 
 interface InputFieldProps extends TextInputProps {
   disabled?: boolean;
@@ -88,7 +88,7 @@ const styling = () =>
     error: {
       color: colors.RED,
       ... getFontStyle('body', 'small', 'medium'),
-      paddingTop: 5,
+      padding: spacing.M4,
     }  as TextStyle,
   });
 

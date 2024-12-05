@@ -6,14 +6,14 @@ import DayOfWeeks from './DayOfWeeks';
 import DateBox from './DateBox';
 import YearSelector from './YearSelector';
 import CalendarHomeHeaderRight from './CalendarHomeHeaderRight';
-import { colors, getFontStyle } from '../../constants'; 
+import { colors, getFontStyle, spacing } from '../../constants'; 
 import { isSameAsCurrentDate, MonthYear } from '../../../utils';
 interface Schedule {
   content: string;
   id: number;
   time: string;
   title: string;
-  day: number;
+  day: string;
 }
 interface CalendarProps<T> {
   monthYear: MonthYear;
@@ -37,7 +37,6 @@ function Calendar<T>({
 
   const { lastDate, firstDOW, year, month } = monthYear;
   const navigation = useNavigation();
-
   const [yearSelector, setYearSelector] = useState({ isVisible: false });
 
   useEffect(() => {
@@ -80,7 +79,9 @@ function Calendar<T>({
               <DateBox
                 date={item.date}
                 isToday={isSameAsCurrentDate(year, month, item.date)}
-                hasSchedule={Boolean(schedules.some(schedule => schedule.day === item.date))}
+                hasSchedule={Boolean(schedules.some(schedule => 
+                  Number(schedule.day.split('-')[2]) === item.date
+                ))}
                 selectedDate={selectedDate}
                 onPressDate={onPressDate}
               />
@@ -116,19 +117,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginHorizontal: 25,
-    marginVertical: 16,
+    marginHorizontal: spacing.M24,
+    marginVertical: spacing.M16,
   } as ViewStyle,
   monthYearContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
+    padding: spacing.M12
   } as ViewStyle,
   monthButtonContainer: {
     flexDirection: 'row',
   } as ViewStyle,
   monthButton: {
-    padding: 10,
+    padding: spacing.M12,
   } as ViewStyle,
   titleText: {
     ... getFontStyle('titleBody', 'small', 'medium'),

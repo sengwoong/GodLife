@@ -11,7 +11,7 @@ import {
   TextStyle,
 } from 'react-native';
 
-import { colors, getFontStyle } from '../constants';
+import { colors, getFontStyle, spacing } from '../constants';
 
 interface SelectButtonProps {
   options: string[]; // 옵션 목록
@@ -80,7 +80,7 @@ const styling = () =>
     button: {
       borderWidth: 1,
       borderColor: colors.GRAY,
-      padding: deviceHeight > 700 ? 10 : 6,
+      padding: deviceHeight > 700 ? spacing.M12 : spacing.M8,
       backgroundColor: colors.WHITE,
     },
     buttonText: {

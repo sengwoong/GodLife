@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, TextStyle } from 'react-native';
 import { handleSearch, handleSelectSuggestion } from '../../../utils/searchUtils';
 import SearchResults from './SearchResults';
-import { colors, getFontStyle } from '../../constants';
+import { colors, getFontStyle, spacing } from '../../constants';
 interface SearchBarProps {
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
   searchText: string;
@@ -55,12 +55,12 @@ const SearchBar: React.FC<SearchBarProps> = ({setSearchText,searchText}) => {
 const styles = StyleSheet.create({
   container: {
     zIndex: 1,
-    padding: 10,
+    padding: spacing.M12,
   },
   searchBar: {
     backgroundColor: colors.WHITE,
     borderRadius: 25,
-    paddingHorizontal: 15,
+    paddingHorizontal: spacing.M16,
     height: 40,
     marginBottom: 10,
     elevation: 3,

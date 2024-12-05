@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Pressable, Text, TextStyle, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, getFontStyle } from '../constants/index';
+import { colors, getFontStyle, spacing } from '../constants/index';
 
 function EventList({ posts,onChangePressItem }: { posts: any[],onChangePressItem: (itmeIndex: number) => void }) {
   const styles = styling();
@@ -41,23 +41,22 @@ const styling = () =>
       backgroundColor: colors.WHITE,
     }as ViewStyle,
     innerContainer: {
-      gap: 20,
+      gap: 2,
     }as ViewStyle,
     itemContainer: {
       flexDirection: 'row',
-      marginBottom: 10,
     }as ViewStyle,
     infoContainer: {
       borderTopWidth: 1,
       borderColor: colors.GRAY,
-      padding: 20,
+      padding: spacing.M8,
       width: '100%',
     } as ViewStyle,
     infoText: {
       color: colors.GRAY, 
       backgroundColor: colors.BLACK, 
       ... getFontStyle('body', 'medium', 'regular'),
-      padding:5,
+      padding: spacing.M4,
       borderRadius: 20,
       alignSelf: 'flex-start',
       overflow: 'hidden',

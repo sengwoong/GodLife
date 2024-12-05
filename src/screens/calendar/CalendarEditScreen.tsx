@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, FlatList, TextStyle } from 'react-native';
 import ScrollWheelPicker from '../../components/ScrollWheelPicker';
-import { colors, getFontStyle, margins } from '../../constants';
+import { colors, getFontStyle, spacing } from '../../constants';
 import { CompoundOption } from '../../components/Modal';
 import CustomButton from '../../components/CustomButton';
 
@@ -42,7 +42,6 @@ export default function CalendarEditScreen() {
   const [selectedYear, setSelectedYear] = useState<number>(2024);
   const [selectedMonth, setSelectedMonth] = useState<number>(12);
   const [selectedDay, setSelectedDay] = useState<number>(1);
-  const [SelectScheduleIndex, setSelectScheduleIndex] = useState<number | null>(null);
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -54,21 +53,12 @@ export default function CalendarEditScreen() {
     setIsVisible(true);  // 모달 보이기
   };
 
-
-  // const { years, months, days } = useMemo(() => {
-  //   const years = Array.from({ length: 30 }, (_, i) => 2020 + i);
-  //   const months = Array.from({ length: 12 }, (_, i) => i + 1);
-  //   const days = Array.from({ length: new Date(selectedYear, selectedMonth, 0).getDate() }, (_, i) => i + 1);
-  //   return { years, months, days };
-  // }, []);
-
   const handleEdit = (schedule: Schedule) => {
     setEditedSchedule(schedule);
     const [year, month, day] = schedule.day.split('-').map(Number);
     setSelectedYear(year);
     setSelectedMonth(month);
     setSelectedDay(day);
-    setSelectScheduleIndex(schedule.id);
     showOption()
   };
   console.log(selectedDay)
@@ -116,19 +106,16 @@ export default function CalendarEditScreen() {
             data={Array.from({ length: 14 }, (_, i) => 2020 + i)}
             onValueChange={setSelectedYear}
             selectedValue={selectedYear}
-            SelectScheduleIndex={SelectScheduleIndex}
           />
           <ScrollWheelPicker
             data={Array.from({ length: 12 }, (_, i) => i + 1)}
             onValueChange={setSelectedMonth}
             selectedValue={selectedMonth}
-            SelectScheduleIndex={SelectScheduleIndex}
           />
           <ScrollWheelPicker
             data={Array.from({ length:30 }, (_, i) => i + 1)}
             onValueChange={setSelectedDay}
             selectedValue={selectedDay}
-            SelectScheduleIndex={SelectScheduleIndex}
           />
         </View>
         <View style={styles.gutter}></View>
@@ -168,21 +155,21 @@ export default function CalendarEditScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: margins.M16,
+    padding: spacing.M16,
   },
   header: {
     ...getFontStyle('title', 'large', 'bold'), // 제목 스타일
     color: colors.BLACK,
-    marginBottom: margins.M20,
+    marginBottom: spacing.M20,
   } as TextStyle ,
   scheduleItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: margins.M16,
+    padding: spacing.M16,
     backgroundColor: colors.WHITE,
     borderRadius: 8,
-    marginBottom: margins.M8,
+    marginBottom: spacing.M8,
     borderColor: colors.GRAY,
     borderWidth: 1,
   },
@@ -203,21 +190,21 @@ const styles = StyleSheet.create({
   }as TextStyle ,
   editContainer: {
     flex: 1,
-    padding: margins.M16,
+    padding: spacing.M16,
     backgroundColor: colors.WHITE,
     borderRadius: 8,
-    marginTop: margins.M20,
+    marginTop: spacing.M20,
     justifyContent: 'space-between',
   },
   editHeader: {
     ...getFontStyle('titleBody', 'large', 'bold'), // 편집 화면 제목 스타일
     color: colors.BLACK,
-    marginBottom: margins.M12,
+    marginBottom: spacing.M12,
   }as TextStyle ,
   pickerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: margins.M12,
+    marginBottom: spacing.M12,
   },
   input: {
     ...getFontStyle('body', 'medium', 'medium'), // 입력 필드 텍스트 스타일
@@ -225,22 +212,22 @@ const styles = StyleSheet.create({
     borderColor: colors.BLACK,
     borderWidth: 0.5,
     borderRadius: 4,
-    marginBottom: margins.M12,
-    paddingHorizontal: margins.M8,
+    marginBottom: spacing.M12,
+    paddingHorizontal: spacing.M8,
   } as TextStyle  ,
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: margins.M16,
+    marginTop: spacing.M16,
   },
   modal: {
     ...getFontStyle('body', 'medium', 'medium'), // 모달 텍스트 스타일
     borderColor: colors.BLACK,
     borderWidth: 1,
-    margin: margins.M12,
-    padding: margins.M8,
+    margin: spacing.M12,
+    padding: spacing.M8,
   },
   gutter:{
-    padding: margins.M12,
+    padding: spacing.M12,
   }
 });

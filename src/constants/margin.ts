@@ -1,4 +1,4 @@
-const margins = {
+const spacing = {
   M2: 2,
   M4: 4,
   M8: 8,
@@ -19,4 +19,4 @@ const margins = {
   M180: 180,
 } as const;
 
-export { margins };
+export { spacing };

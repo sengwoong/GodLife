@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextStyle } from 'react-native';
-import { colors, getFontStyle } from '../../constants';
+import { colors, getFontStyle, spacing } from '../../constants';
 
 interface SearchResultsProps {
   searchText: string;
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   column: {
     width: '48%',
     backgroundColor: colors.WHITE,
-    padding: 10,
+    padding: spacing.M12,
     borderRadius: 10,
     elevation: 2,
     shadowColor:  colors.BLACK,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   columnTitle: {
     ... getFontStyle('titleBody', 'large', 'bold'),
-    marginBottom: 10,
+    marginBottom: spacing.M12,
   } as TextStyle,
   suggestionItem: {
     ... getFontStyle('titleBody', 'mediumSmall', 'bold'),
@@ -84,13 +84,13 @@ const styles = StyleSheet.create({
   } as TextStyle,
   highlightedItem: {
     ... getFontStyle('titleBody', 'mediumSmall', 'bold'),
-    paddingVertical: 5,
+    paddingVertical: spacing.M4,
     color: colors.BLACK,
     fontWeight: 'bold',
   } as TextStyle,
   recentItem: {
     ... getFontStyle('titleBody', 'mediumSmall', 'bold'),
-    paddingVertical: 5,
+    paddingVertical: spacing.M4,
     color: colors.BLACK,
   } as TextStyle,
 });

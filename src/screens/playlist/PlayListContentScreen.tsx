@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, SafeAreaView, TextStyle } from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import SearchBar from '../../components/searchbar/SearchBar';
-import { colors, getFontStyle } from '../../constants';
+import { colors, getFontStyle, spacing } from '../../constants';
 
 
 function PlayListContentScreen() {
@@ -51,12 +51,12 @@ function PlayListContentScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: spacing.M20,
     justifyContent: 'space-between',
   },
   row: {
     flexDirection: 'row',
-    marginBottom: 1,
+    marginBottom: spacing.M2,
     overflow: 'hidden',
     backgroundColor: colors.WHITE,
     elevation: 2,
@@ -64,13 +64,13 @@ const styles = StyleSheet.create({
   titleContainer: {
     width: '30%',
     backgroundColor: colors.LIGHT_GRAY,
-    padding: 10,
+    padding: spacing.M12,
     justifyContent: 'center',
   },
   contentContainer: {
     width: '70%',
     backgroundColor: colors.WHITE,
-    padding: 10,
+    padding: spacing.M12,
   },
   titleText: {
     ... getFontStyle('titleBody', 'small', 'bold'),
