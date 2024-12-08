@@ -1,13 +1,22 @@
 import React, { useMemo, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, SafeAreaView, TextStyle } from 'react-native';
+import { CompositeNavigationProp, useNavigation } from '@react-navigation/native'; // import useNavigation
 import CustomButton from '../../components/CustomButton';
 import SearchBar from '../../components/searchbar/SearchBar';
-import { getFontStyle, spacing } from '../../constants';
+import { getFontStyle, spacing, vocaNavigations } from '../../constants';
+import { VocaStackParamList } from '../../navigations/stack/VocaStackNavigator';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { MainDrawerParamList } from '../../navigations/drawer/MainDrawerNavigator';
+
+type Navigation = CompositeNavigationProp<
+  StackNavigationProp<VocaStackParamList>,
+  DrawerNavigationProp<MainDrawerParamList>
+>;
 
 function VocaContentScreen() {
-
+  const navigation = useNavigation<Navigation>(); // using useNavigation hook
   const [searchText, setSearchText] = useState<string>('');
-
 
   const schedules = useMemo(
     () => [
@@ -48,25 +57,30 @@ function VocaContentScreen() {
     []
   );
 
+  // Function to navigate with wordIndex
+  const navigateToVocaContent = (wordIndex: number) => {
+    navigation.navigate(vocaNavigations.VOCACONTENTEDIT , { wordIndex });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <SearchBar setSearchText={setSearchText} searchText={searchText} initialSuggestions={ [
-    'React',
-    'React Native',
-    'JavaScript',
-    'TypeScript',
-    'Node.js',
-    'Python',
-    'Django',
-    'Spring',
-  ]}/>
+        'React',
+        'React Native',
+        'JavaScript',
+        'TypeScript',
+        'Node.js',
+        'Python',
+        'Django',
+        'Spring',
+      ]}/>
 
       <FlatList
         data={schedules}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View>
-            <View style={styles.row}>
+            <View style={styles.row} onTouchEnd={() => navigateToVocaContent(item.id)}>
               <View style={styles.titleContainer}>
                 <Text numberOfLines={1} ellipsizeMode="tail" style={styles.titleText}>
                   {item.title}
