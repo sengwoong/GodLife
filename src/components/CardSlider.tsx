@@ -86,7 +86,7 @@ const CardSlider: React.FC = () => {
             <View style={styles.playListCard}>
               {playlist.map((song, index) => (
                 <View>
-                  <Text key={index} style={styles.cardplayTitle}>
+                  <Text key={'song'+index} style={styles.cardplayTitle}>
                     {song}
                   </Text>
                   <Line/>
@@ -118,7 +118,7 @@ const CardSlider: React.FC = () => {
       <View style={styles.pagination}>
         {[1, 2, 3].map((_, index) => (
           <View
-            key={index}
+            key={'dot'+index}
             style={[styles.dot, currentIndex === index ? styles.activeDot : styles.inactiveDot]}
           />
         ))}

@@ -57,7 +57,6 @@ function VocaContentScreen() {
     []
   );
 
-  // Function to navigate with wordIndex
   const navigateToVocaContent = (wordIndex: number) => {
     navigation.navigate(vocaNavigations.VOCACONTENTEDIT , { wordIndex });
   };
