@@ -10,7 +10,7 @@ import PlayListScreen from '../../screens/playlist/PlayListScreen';
 export type PlayListStackParamList = {
   [PlayListNavigations.PLAYLIST]:undefined;
   [PlayListNavigations.PLAYLISTCONTENT]: {playListIndex: number};
-  [PlayListNavigations.PLAYLISTEDIT]:  {PlayListIndex: number};
+  [PlayListNavigations.PLAYLISTEDIT]:  {musicIndex: number};
 }
 const Stack = createStackNavigator<PlayListStackParamList>();
 

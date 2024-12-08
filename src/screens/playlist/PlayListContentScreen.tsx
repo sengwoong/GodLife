@@ -1,9 +1,18 @@
 import React, { useMemo, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, SafeAreaView, TextStyle } from 'react-native';
+import { View, Text, FlatList, StyleSheet, SafeAreaView, TextStyle, TouchableOpacity } from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import SearchBar from '../../components/searchbar/SearchBar';
-import { colors, getFontStyle, spacing } from '../../constants';
+import { colors, getFontStyle, PlayListNavigations, spacing } from '../../constants';
+import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import { PlayListStackParamList } from '../../navigations/stack/PlayListStackNavigator';
+import { MainDrawerParamList } from '../../navigations/drawer/MainDrawerNavigator';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { StackNavigationProp } from '@react-navigation/stack';
 
+type Navigation = CompositeNavigationProp<
+  StackNavigationProp<PlayListStackParamList>,
+  DrawerNavigationProp<MainDrawerParamList>
+>;
 
 function PlayListContentScreen() {
   const [searchText, setSearchText] = useState<string>('');
@@ -19,23 +28,36 @@ function PlayListContentScreen() {
     []
   );
 
+  const navigation = useNavigation<Navigation>();
+
+  const navigateToVocaContent = (musicIndex: number) => {
+    navigation.navigate(PlayListNavigations.PLAYLISTEDIT, { musicIndex });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-           <SearchBar setSearchText={setSearchText} searchText={searchText} initialSuggestions={ [
-    'React',
-    'React Native',
-    'JavaScript',
-    'TypeScript',
-    'Node.js',
-    'Python',
-    'Django',
-    'Spring',
-  ]}/>
+      <SearchBar
+        setSearchText={setSearchText}
+        searchText={searchText}
+        initialSuggestions={[
+          'React',
+          'React Native',
+          'JavaScript',
+          'TypeScript',
+          'Node.js',
+          'Python',
+          'Django',
+          'Spring',
+        ]}
+      />
       <FlatList
         data={songs}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={styles.row}>
+          <TouchableOpacity
+            onPress={() => navigateToVocaContent(item.id)} 
+            style={styles.row}
+          >
             <View style={styles.titleContainer}>
               <Text numberOfLines={1} ellipsizeMode="tail" style={styles.titleText}>
                 {item.title}
@@ -47,10 +69,9 @@ function PlayListContentScreen() {
                 <Text>{item.url}</Text>
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
         )}
       />
-      
       <CustomButton color={"GREEN"} label="수정하기" style={styles.button} />
     </SafeAreaView>
   );
@@ -81,11 +102,11 @@ const styles = StyleSheet.create({
     padding: spacing.M12,
   },
   titleText: {
-    ... getFontStyle('titleBody', 'small', 'bold'),
+    ...getFontStyle('titleBody', 'small', 'bold'),
     color: colors.BLACK,
   } as TextStyle,
   contentText: {
-    ... getFontStyle('titleBody', 'small', 'medium'),
+    ...getFontStyle('titleBody', 'small', 'medium'),
     color: colors.BLACK,
   } as TextStyle,
   button: {
