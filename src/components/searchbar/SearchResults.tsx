@@ -19,7 +19,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     <View style={styles.resultContainer}>
       {searchText.trim() && (
         <>
-          <View style={styles.column}>
+          <View style={[styles.column , styles.width70]}>
             <Text style={styles.columnTitle}>추천 단어</Text>
             <FlatList
               data={filteredSuggestions}
@@ -40,7 +40,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
             />
           </View>
 
-          <View style={styles.column}>
+          <View style={[styles.column , styles.width30]}>
             <Text style={styles.columnTitle}>최근 검색</Text>
             <FlatList
               data={recentSearches}
@@ -63,8 +63,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  width70:{
+    width: '70%',
+  },
+  width30:{
+    width: '30%',
+  },
   column: {
-    width: '48%',
     backgroundColor: colors.WHITE,
     padding: spacing.M12,
     borderRadius: 10,

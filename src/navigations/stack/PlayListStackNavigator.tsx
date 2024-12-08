@@ -44,9 +44,6 @@ function PlayListStackNavigator() {
         options={{
           headerShown: true,
           headerTitle: ' ',
-          cardStyle: {
-            backgroundColor: colors.GRAY,
-          },
         }}
       />
       <Stack.Screen

@@ -6,7 +6,7 @@ import { getFontStyle, spacing } from '../../constants';
 
 function VocaContentScreen() {
 
-  const [searchText, setSearchText] = useState<string>(''); // 검색어 상태
+  const [searchText, setSearchText] = useState<string>('');
 
 
   const schedules = useMemo(
@@ -50,7 +50,16 @@ function VocaContentScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchBar setSearchText={setSearchText} searchText={searchText} />
+      <SearchBar setSearchText={setSearchText} searchText={searchText} initialSuggestions={ [
+    'React',
+    'React Native',
+    'JavaScript',
+    'TypeScript',
+    'Node.js',
+    'Python',
+    'Django',
+    'Spring',
+  ]}/>
 
       <FlatList
         data={schedules}
@@ -82,7 +91,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: spacing.M20,
-    backgroundColor: '#f5f5f5',
     justifyContent: 'space-between', 
   },
   row: {

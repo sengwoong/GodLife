@@ -21,8 +21,16 @@ function PlayListContentScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchBar setSearchText={setSearchText} searchText={searchText} />
-
+           <SearchBar setSearchText={setSearchText} searchText={searchText} initialSuggestions={ [
+    'React',
+    'React Native',
+    'JavaScript',
+    'TypeScript',
+    'Node.js',
+    'Python',
+    'Django',
+    'Spring',
+  ]}/>
       <FlatList
         data={songs}
         keyExtractor={(item) => item.id.toString()}

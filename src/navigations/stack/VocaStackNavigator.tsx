@@ -8,9 +8,9 @@ import HomeHeaderLeft from './HomeHeaderLeft';
 import VocaEditScreen from '../../screens/voca/VocaEditScreen';
 
 export type VocaStackParamList = {
-  [vocaNavigations.VOCAMAIN]: {vocaIndex: number};
-  [vocaNavigations.VOCACONTENT]: {wordIndex: number};
-  [vocaNavigations.VOCACONTENTEDIT]: undefined;
+  [vocaNavigations.VOCAMAIN]: undefined;
+  [vocaNavigations.VOCACONTENT]: {vocaIndex: number};
+  [vocaNavigations.VOCACONTENTEDIT]: {wordIndex: number};
 };
 
 const Stack = createStackNavigator<VocaStackParamList>();
@@ -45,9 +45,6 @@ function VocaStackNavigator() {
         options={{
           headerShown: true,
           headerTitle: ' ',
-          cardStyle: {
-            backgroundColor: colors.GRAY,
-          },
         }}
       />
       <Stack.Screen
