@@ -3,13 +3,12 @@ const common = {
   RED_500: '#FF5F5F',
   BLUE_400: '#B4E0FF',
   GRAY_200: '#E7E7E7',
-  WHITE_100: '#FFFFFF',
+  WHITE:'#FFFFFF',
+  WHITE_100: '#F5F5F5',
   UNCHANGE_BLACK: '#161616',
-  LIGHT_GREEN: '#B2E0B2', 
+  LIGHT_GREEN: '#B2E0B2',
   LIGHT_RED: '#FFCCCC',
-  LIGHT_GRAY: '#F2F2F2', 
-
-
+  LIGHT_GRAY: '#F2F2F2',
 };
 
 const colors = {
@@ -18,10 +17,11 @@ const colors = {
   BLUE: common.BLUE_400,
   GRAY: common.GRAY_200,
   BLACK: common.UNCHANGE_BLACK,
-  WHITE: common.WHITE_100,
+  WHITE: common.WHITE,
+  LIGHT_WHITE: common.WHITE_100,
   LIGHT_GREEN: common.LIGHT_GREEN,
-  LIGHT_RED: common.LIGHT_RED, 
-  LIGHT_GRAY: common.LIGHT_GRAY, 
+  LIGHT_RED: common.LIGHT_RED,
+  LIGHT_GRAY: common.LIGHT_GRAY,
 } as const;
 
 const colorHex = {
@@ -32,7 +32,7 @@ const colorHex = {
   BLACK: colors.BLACK,
   LIGHT_BLACK: '#4A4A4A',
   LIGHT_GREEN: colors.LIGHT_GREEN,
-  LIGHT_RED: colors.LIGHT_RED, 
+  LIGHT_RED: colors.LIGHT_RED,
   LIGHT_GRAY: colors.LIGHT_GRAY,
 } as const;
 

@@ -16,7 +16,7 @@ import { colors,getFontStyle } from '../constants/index';
 interface CustomButtonProps extends PressableProps {
   label: string;
   variant?: 'filled' | 'outlined';
-  color?: 'GREEN' | 'RED' | 'BLUE' | 'BLACK';
+  color?: 'GREEN' | 'RED' | 'BLUE' | 'BLACK' | 'WHITE';
   size?: 'large' | 'medium' | 'text_size';
   shape?: 'rounded' | 'square';
   inValid?: boolean;
@@ -32,7 +32,7 @@ const deviceHeight = Dimensions.get('screen').height;
  *
  * @param {string} label - 버튼 내부에 표시될 텍스트.
  * @param {'filled' | 'outlined'} [variant='filled'] - 버튼의 스타일 유형.
- * @param {'GREEN' | 'RED' | 'BLUE' | 'BLACK'} [color='GREEN'] - 버튼의 색상.
+ * @param {'GREEN' | 'RED' | 'BLUE' | 'BLACK' | 'WHITE'} [color='GREEN'] - 버튼의 색상.
  * @param {'large' | 'medium'| 'text_size'} [size='large'] - 버튼 크기.
  * @param {'rounded' | 'square'} [shape='square'] - 버튼의 모양 (둥근 모서리 또는 사각형).
  * @param {boolean} [inValid=false] - 버튼 비활성화 여부. true일 경우 비활성화.
@@ -55,6 +55,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   icon = null,
   ...props
 }) => {
+
   return (
     <Pressable
       disabled={inValid}
@@ -69,7 +70,10 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     >
       <View style={styles[size]}>
         {icon}
-        <Text style={[styles.text, textStyle]}>{label}</Text>
+        <Text style={[styles.text, color === 'BLACK' ? styles.text_color_WHITE : styles.text_color_BLACK, textStyle]}>
+  {label}
+</Text>
+
       </View>
     </Pressable>
   );
@@ -104,30 +108,44 @@ const styles = StyleSheet.create({
   filledBLACK: {
     backgroundColor: colors.BLACK,
   } as ViewStyle,
+  filledWHITE: {
+    backgroundColor: colors.WHITE,
+  } as ViewStyle,
 
   outlinedGREEN: {
-    backgroundColor: colors.GREEN,
-    borderWidth: 1,
+    backgroundColor: colors.WHITE,
+    borderColor:colors.GREEN,
+    borderWidth: 2,
   } as ViewStyle,
   outlinedRED: {
-    backgroundColor: colors.RED,
-    borderWidth: 1,
+    backgroundColor: colors.WHITE,
+    borderColor:colors.RED,
+    borderWidth: 2,
   } as ViewStyle,
   outlinedBLUE: {
-    backgroundColor: colors.BLUE,
-    borderWidth: 1,
+    backgroundColor: colors.WHITE,
+    borderColor:colors.BLUE,
+    borderWidth: 2,
   } as ViewStyle,
   outlinedBLACK: {
+    backgroundColor: colors.WHITE,
+    borderColor:colors.BLACK,
+    borderWidth: 2,
+  } as ViewStyle,
+  outlinedWHITE: {
     backgroundColor: colors.BLACK,
-    borderWidth: 1,
+    borderColor:colors.WHITE,
+    borderWidth: 2,
   } as ViewStyle,
 
   filledPressed: {
     opacity: 0.8,
+    backgroundColor: colors.BLACK,
   } as ViewStyle,
   outlinedPressed: {
-    borderColor: colors.WHITE,
-  },
+    opacity: 0.8,
+
+   } as ViewStyle,
 
   large: {
     width: '100%',
@@ -154,8 +172,15 @@ const styles = StyleSheet.create({
 
   text: {
    ... getFontStyle('body','medium','medium'), 
-    color: colors.WHITE,
+   color: "blue",
+
   } as TextStyle,
+  text_color_WHITE:{
+    color: colors.WHITE
+  },
+  text_color_BLACK:{
+    color: colors.BLACK
+  }
 });
 
 export default CustomButton;

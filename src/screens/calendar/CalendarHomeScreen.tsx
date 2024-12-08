@@ -223,6 +223,7 @@ function CalendarHomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
   },
   SelectDayText: {
     ... getFontStyle('display', 'small', 'bold'),

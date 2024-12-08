@@ -21,7 +21,7 @@ const titleFontSizes = {
 const bodyFontSizes = {
     bodyLarge: 13,
     bodyMedium: 12,
-    bodySmall: 11,
+    bodySmall: 8,
   } as const;
   
 const titleBodyFontSizes = {
