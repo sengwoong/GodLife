@@ -8,6 +8,7 @@ import { PlayListStackParamList } from '../../navigations/stack/PlayListStackNav
 import { MainDrawerParamList } from '../../navigations/drawer/MainDrawerNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { StackNavigationProp } from '@react-navigation/stack';
+import BulletinBoard from '../../components/BulletinBoard';
 
 type Navigation = CompositeNavigationProp<
   StackNavigationProp<PlayListStackParamList>,
@@ -19,11 +20,11 @@ function PlayListContentScreen() {
 
   const songs = useMemo(
     () => [
-      { id: 1, title: 'Song 1 제목', url: 'https://www.example.com/song1' },
-      { id: 2, title: 'Song 2 제목', url: 'https://www.example.com/song2' },
-      { id: 3, title: 'Song 3 제목', url: 'https://www.example.com/song3' },
-      { id: 4, title: 'Song 4 제목', url: 'https://www.example.com/song4' },
-      { id: 5, title: 'Song 5 제목', url: 'https://www.example.com/song5' },
+      { id: 1, title: 'Song 1 제목', content: 'https://www.example.com/song1' },
+      { id: 2, title: 'Song 2 제목', content: 'https://www.example.com/song2' },
+      { id: 3, title: 'Song 3 제목', content: 'https://www.example.com/song3' },
+      { id: 4, title: 'Song 4 제목', content: 'https://www.example.com/song4' },
+      { id: 5, title: 'Song 5 제목', content: 'https://www.example.com/song5' },
     ],
     []
   );
@@ -50,28 +51,7 @@ function PlayListContentScreen() {
           'Spring',
         ]}
       />
-      <FlatList
-        data={songs}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigateToVocaContent(item.id)} 
-            style={styles.row}
-          >
-            <View style={styles.titleContainer}>
-              <Text numberOfLines={1} ellipsizeMode="tail" style={styles.titleText}>
-                {item.title}
-              </Text>
-            </View>
-            <View style={styles.contentContainer}>
-              <Text numberOfLines={1} ellipsizeMode="tail" style={styles.contentText}>
-                <Text>URL: </Text>
-                <Text>{item.url}</Text>
-              </Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      />
+   <BulletinBoard data={songs} onItemPress={navigateToVocaContent} />
       <CustomButton color={"GREEN"} label="수정하기" style={styles.button} />
     </SafeAreaView>
   );

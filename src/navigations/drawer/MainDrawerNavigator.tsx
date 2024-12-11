@@ -8,6 +8,7 @@ import CustomDrawerContent from './CustomDrawerContent';
 import CalendarStackNavigator from '../stack/CalendarStackNavigator';
 import PlayListStackNavigator from '../stack/PlayListStackNavigator';
 import MainStackNavigator from '../stack/MainStackNavigator';
+import { FeedDetailScreen } from '../../screens/feed/FeedDetailScreen';
 const Drawer = createDrawerNavigator();
 
 export type MainDrawerParamList = {
@@ -30,7 +31,7 @@ function MainDrawerNavigator() {
       <Drawer.Screen  name={drawerNavigations.CALENDAR} component={CalendarStackNavigator} />
       <Drawer.Screen name={drawerNavigations.VOCA} component={VocaStackNavigator} />
       <Drawer.Screen name={drawerNavigations.PlayList} component={PlayListStackNavigator} />
-      <Drawer.Screen options={{headerShown: true}} name={drawerNavigations.SETTING} component={FeedScreen} />
+      <Drawer.Screen options={{headerShown: true}} name={drawerNavigations.SETTING} component={FeedDetailScreen} />
     </Drawer.Navigator>
   );
 }

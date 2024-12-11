@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   } as TextStyle,
 
   text: {
-   ... getFontStyle('body','medium','medium'), 
+   ... getFontStyle('body','medium','bold'), 
    color: "blue",
 
   } as TextStyle,
