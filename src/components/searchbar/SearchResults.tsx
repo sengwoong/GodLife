@@ -61,7 +61,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 const styles = StyleSheet.create({
   resultContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    position:'absolute',
+    marginTop:55,
   },
   width70:{
     width: '70%',

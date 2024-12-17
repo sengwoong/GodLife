@@ -12,13 +12,13 @@ const drawerNavigations = {
     MAIN: 'Main',
   } as const;
 
-const vocaNavigations = {
+const VocaNavigations = {
     VOCAMAIN: 'VocaMainMain',
     VOCACONTENT: 'VocaContent',
     VOCACONTENTEDIT: 'VocaContentEdit',
     } as const;
   
-const calendarNavigations = {
+const CalendarNavigations = {
     CALENDAR: 'CalendarMain',
     CALENDAREDIT: 'CalendarEdit',
     } as const;
@@ -29,9 +29,9 @@ const PlayListNavigations = {
     PLAYLISTEDIT: 'PlayListEdit',
     } as const;
     
-const mainNavigations = {
+const MainNavigations = {
   MAIN: 'MainPage',
   FEED: 'MarketFeed',
   } as const;
     
-  export { vocaNavigations,authNavigations,drawerNavigations,calendarNavigations,PlayListNavigations,mainNavigations };
+  export { VocaNavigations,authNavigations,drawerNavigations,CalendarNavigations,PlayListNavigations,MainNavigations };

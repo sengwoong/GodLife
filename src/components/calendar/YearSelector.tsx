@@ -114,8 +114,8 @@ const styling = () =>
       justifyContent: 'center',
     },
     currentYearButton: {
-      backgroundColor: colors.RED,
-      borderColor: colors.RED,
+      backgroundColor: colors.GREEN,
+      borderColor: colors.GREEN,
     },
     yearText: {
       ... getFontStyle('titleBody', 'small', 'medium'),

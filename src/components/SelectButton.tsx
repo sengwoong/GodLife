@@ -107,7 +107,7 @@ const styling = () =>
       paddingVertical: 20,
     },
     optionText: {
-      ...getFontStyle('body', 'small', 'medium'),
+      ...getFontStyle('body', 'large', 'medium'),
       color: colors.BLACK,
     } as TextStyle,
   });

@@ -57,7 +57,6 @@ function VocaScreen() {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    margin: spacing.M32,
     flex: 1,
     
   },

@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { VocaStackParamList } from '../../navigations/stack/VocaStackNavigator';
 import { MainDrawerParamList } from '../../navigations/drawer/MainDrawerNavigator';
-import { colors, getFontStyle, spacing, vocaNavigations } from '../../constants';
+import { colors, getFontStyle, spacing, VocaNavigations } from '../../constants';
 import SearchBar from '../../components/searchbar/SearchBar';
 
 type Navigation = CompositeNavigationProp<
@@ -17,7 +17,7 @@ function VocaScreen() {
   const navigation = useNavigation<Navigation>();
 
   const navigateToVocaContent = (vocaIndex: number) => {
-    navigation.navigate(vocaNavigations.VOCACONTENT, { vocaIndex });
+    navigation.navigate(VocaNavigations.VOCACONTENT, { vocaIndex });
   };
 
   const vocaList = [
@@ -57,7 +57,6 @@ function VocaScreen() {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    margin: spacing.M32,
     flex: 1,
     
   },

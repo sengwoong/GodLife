@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet, SafeAreaView, TextStyle, TouchableOpa
 import CustomButton from '../../components/CustomButton';
 import SearchBar from '../../components/searchbar/SearchBar';
 import { colors, getFontStyle, PlayListNavigations, spacing } from '../../constants';
-import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import { CompositeNavigationProp, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { PlayListStackParamList } from '../../navigations/stack/PlayListStackNavigator';
 import { MainDrawerParamList } from '../../navigations/drawer/MainDrawerNavigator';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
@@ -31,8 +31,13 @@ function PlayListContentScreen() {
 
   const navigation = useNavigation<Navigation>();
 
-  const navigateToVocaContent = (musicIndex: number) => {
-    navigation.navigate(PlayListNavigations.PLAYLISTEDIT, { musicIndex });
+
+  const navigateToPlayListUpdateMusic = (Index: number) => {
+    navigation.navigate(PlayListNavigations.PLAYLISTEDIT, {type:'플레이 리스트', Index });
+  };
+
+  const navigateToPlayListAddMusic = () => {
+    navigation.navigate(PlayListNavigations.PLAYLISTEDIT, {type:'플레이 리스트' , Index:undefined});
   };
 
   return (
@@ -51,8 +56,8 @@ function PlayListContentScreen() {
           'Spring',
         ]}
       />
-   <BulletinBoard data={songs} onItemPress={navigateToVocaContent} />
-      <CustomButton color={"GREEN"} label="수정하기" style={styles.button} />
+   <BulletinBoard data={songs} onItemPress={navigateToPlayListUpdateMusic} />
+      <CustomButton color={"BLACK"} label="등록하기" style={styles.button} onPress={navigateToPlayListAddMusic} />
     </SafeAreaView>
   );
 }
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: spacing.M20,
-    justifyContent: 'space-between',
+    alignItems:'center'
   },
   row: {
     flexDirection: 'row',

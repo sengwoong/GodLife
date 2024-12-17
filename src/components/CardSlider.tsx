@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, Text, StyleSheet, Dimensions, NativeSyntheticEvent, NativeScrollEvent, TextStyle, FlatList } from 'react-native';
 import { colors, getFontStyle, spacing } from '../constants';
 import Line from './Line';
+import Margin from './Margin';
 
 let { width } = Dimensions.get('window');
 width = width;
@@ -21,14 +22,14 @@ interface CardSliderProps {
 
 const voca = {
   title: '영어 단어',
-  subtitle: '단어의 의미',
+  word: '단어',
   description: '이 단어는 매우 중요합니다.'
 };
 
-const playlist = ['Song 1', 'Song 2', 'Song 3'];  // 예시 플레이리스트
+const playlist = ['Song 1', 'Song 2', 'Song 3','Song 4', 'Song 5']; 
 
 const calendarItems = [
-  { time: '08:00', title: '영어 공부', description: '영어 단어 학습' },
+  { time: '08:00', title: '영어 공부영어 공부영어 공부', description: '영어 단어 학습' },
   { time: '09:00', title: '수학 문제', description: '수학 문제 풀이' },
   { time: '10:00', title: '과학 실험', description: '과학 실험 준비' },
 ];  
@@ -66,10 +67,10 @@ const CardSlider: React.FC = () => {
       >
         {/* 단어 학습 */}
         <View style={styles.card}>
-          <View style={styles.cardDescriptionContainer}></View>
           <View style={styles.cardContent}>
             <Text style={styles.cardTitle}>{voca.title}</Text>
-            <Text style={styles.cardSubtitle}>{voca.subtitle}</Text>
+            <Margin size={'M8'} />
+            <Text style={styles.cardWordTitle}>{voca.word}</Text>
             <Text style={styles.cardDescription}>{voca.description}</Text>
           </View>
           <View style={styles.cardIcons}>
@@ -80,13 +81,15 @@ const CardSlider: React.FC = () => {
 
         {/* 플레이리스트 */}
         <View style={styles.card}>
-          <View style={styles.cardDescriptionContainer}></View>
           <View style={styles.cardContent}>
             <Text style={styles.cardTitle}>현재 플레이 중인 노래</Text>
+            <Margin size={'M8'} />
             <View style={styles.playListCard}>
               {playlist.map((song, index) => (
                 <View>
-                  <Text key={'song'+index} style={styles.cardplayTitle}>
+                  <Text key={'song'+index} style={styles.cardplayTitle}
+                    numberOfLines={1} 
+                    ellipsizeMode="tail">
                     {song}
                   </Text>
                   <Line/>
@@ -99,14 +102,28 @@ const CardSlider: React.FC = () => {
         {/* 캘린더 */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>오늘 할일</Text>
+          <Margin size={'M8'} />
           <FlatList
             data={calendarItems}
             renderItem={({ item }) => (
               <View style={styles.cardContent}>
-                <Text style={styles.cardCalenadrTime}>{item.time}</Text>
+                <Text style={styles.cardCalenadrTime}
+                  numberOfLines={1} 
+                  ellipsizeMode="tail"
+                  >
+                    {item.time}
+                </Text>
                 <View style={styles.CalenadrListCard}>
-                  <Text style={styles.cardCalenadrTitle}>{item.title}</Text>
-                  <Text style={styles.cardCalenadrDescription}>{item.description}</Text>
+                  <Text style={styles.cardCalenadrTitle}
+                    numberOfLines={1} 
+                    ellipsizeMode="tail">
+                      {item.title} - 
+                  </Text>
+                  <Text style={styles.cardCalenadrDescription} 
+                    numberOfLines={1} 
+                    ellipsizeMode="tail">
+                      {item.description}
+                  </Text>
                 </View>
                 <Line/>
               </View>
@@ -157,8 +174,8 @@ const styles = StyleSheet.create({
     color: colors.GREEN,
     marginBottom: spacing.M8,
   } as TextStyle,
-  cardSubtitle: {
-    ...getFontStyle('titleBody', 'large', 'medium'),
+  cardWordTitle: {
+    ...getFontStyle('title', 'medium', 'bold'),
     color: colors.WHITE,
     marginBottom: spacing.M8,
   } as TextStyle,
@@ -188,9 +205,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   cardplayTitle: {
-    ...getFontStyle('titleBody', 'large', 'bold'),
+    ...getFontStyle('title', 'small', 'bold'),
     color: colors.WHITE,
     marginBottom: spacing.M8,
+    overflow:'hidden',
   } as TextStyle,
   activeDot: {
     backgroundColor: colors.GREEN,
@@ -200,22 +218,23 @@ const styles = StyleSheet.create({
     backgroundColor: colors.GRAY,
   },
   cardCalenadrTitle: {
-    ...getFontStyle('titleBody', 'large', 'bold'),
+    ...getFontStyle('title', 'small', 'bold'),
     color: colors.WHITE,
     marginBottom: spacing.M8,
+    maxWidth:'40%'
   } as TextStyle,
   cardCalenadrDescription: {
-    ...getFontStyle('titleBody', 'large', 'medium'),
+    ...getFontStyle('title', 'medium', 'medium'),
     color: colors.WHITE,
     marginBottom: spacing.M8,
-    marginRight: 1,
+    marginRight: 1
   } as TextStyle,
   cardCalenadrTime: {
     ...getFontStyle('body', 'small', 'regular'),
     color: colors.WHITE,
-    marginBottom: spacing.M8,
   } as TextStyle,
   CalenadrListCard: {
+    alignItems:'center',
     flexDirection: 'row',
   },
 });

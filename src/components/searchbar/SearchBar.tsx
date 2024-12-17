@@ -26,7 +26,7 @@ const SearchBar: React.FC<SearchBarProps> = ({initialSuggestions,setSearchText,s
   return (
     <View style={styles.container}>
       <TextInput
-        style={[styles.searchBar, styles.SearchBarInput]}
+        style={[styles.searchBar, styles.SearchBarText]}
         placeholder="검색어를 입력하세요"
         value={searchText}
         onChangeText={onSearchChange}
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     zIndex: 1,
     width:"90%",
-    padding: spacing.M12,
+    alignContent:'center',
   },
   searchBar: {
     backgroundColor: colors.WHITE,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3.84,
   },
-  SearchBarInput: {
+  SearchBarText: {
     ... getFontStyle('titleBody', 'small', 'medium'),
   } as TextStyle,
 });

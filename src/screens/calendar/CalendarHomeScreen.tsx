@@ -4,7 +4,7 @@ import Calendar from '../../components/calendar/Calendar';
 import { getMonthYearDetails } from '../../../utils';
 import EventList from '../../components/EventList';
 import CustomButton from '../../components/CustomButton';
-import { calendarNavigations, colors, getFontStyle, spacing } from '../../constants/index';  
+import { CalendarNavigations, colors, getFontStyle, spacing } from '../../constants/index';  
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { calendarStackParamList } from '../../navigations/stack/CalendarStackNavigator';
@@ -128,7 +128,7 @@ function CalendarHomeScreen() {
   };
 
   const onChangePressItem = (itemindex: number) => {
-    navigation.navigate(calendarNavigations.CALENDAREDIT, {calendaritemIndex: itemindex});
+    navigation.navigate(CalendarNavigations.CALENDAREDIT, {calendaritemIndex: itemindex});
   };
 
   

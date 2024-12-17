@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { colors } from '../constants';
 
 interface ScrollWheelPickerProps {
   data: number[];
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     color: 'gray',
   },
   selectedText: {
-    color: 'blue',
+    color: colors.GREEN,
     fontWeight: 'bold',
   },
   centerLine: {
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     height: ITEM_HEIGHT,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: 'blue',
+    borderColor:colors.GREEN,
     pointerEvents: 'none',
   },
 });

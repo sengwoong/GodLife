@@ -1,67 +1,102 @@
+import { RouteProp, useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { 
+  View, 
+  Text, 
+  TextInput, 
+  StyleSheet, 
+  SafeAreaView, 
+  TouchableOpacity, 
+  TouchableWithoutFeedback, 
+  Keyboard, 
+  TextStyle 
+} from 'react-native';
+import { VocaStackParamList } from '../../navigations/stack/VocaStackNavigator';
+import { colors, getFontStyle, spacing } from '../../constants';
+import Margin from '../../components/Margin';
+import SelectButton from '../../components/SelectButton';
 
 export default function VocaEditScreen() {
+  const route = useRoute<RouteProp<VocaStackParamList, 'VocaContentEdit'>>();
+  const { type , Index } = route.params || {};
+
   const [language, setLanguage] = useState('');
-  const [word, setWord] = useState('');
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState<string | undefined>();
+
+  const languages = ['English', '日本語', 'Tiếng Việt', '中文', 'Русский'];
+
+  const typeNameWord='단어'
+
 
   const handleSubmit = () => {
-    // Handle the form submission logic here
-    console.log("Language:", language);
-    console.log("Word:", word);
-    console.log("Description:", description);
+    // 폼 제출 처리 로직
+    console.log('Language:', language);
+    console.log('Word:', title);
+    console.log('Description:', description);
+    console.log('Type:', type, 'Index:', Index);
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>GodLife</Text>
+        {/* 헤더 */}
+        <Margin size={'M12'} />
+        {/* 중앙에 type 값 출력 */}
+        <View style={styles.typeContainer}>
+          <Text style={styles.typeText}>{type +'추가하기'}</Text>
         </View>
-
+        <Margin size={'M12'} />
+        {/* 입력 필드 */}
         <TextInput
           style={styles.input}
-          placeholder="단어"
-          value={language}
-          onChangeText={setLanguage}
+          placeholder={type+'추가하기'}
+          value={title}
+          onChangeText={setTitle}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="뜻"
-          value={word}
-          onChangeText={setWord}
-        />
-        <TextInput
-          style={[styles.input, styles.textArea]}
-          placeholder="해석 입력, 더블클릭시 커진다."
-          value={description}
-          onChangeText={setDescription}
-          multiline
-        />
+        {type === typeNameWord ?(
+          <TextInput
+             style={[styles.input, styles.textArea]}
+             placeholder="단어 해석"
+             value={description}
+             onChangeText={setDescription}
+             multiline
+           />
+        ):(<></>)}
 
+        <SelectButton
+          options={languages}
+          selectedOption={selectedLanguage}
+          onSelect={setSelectedLanguage}
+          disabled={false} 
+        />
+        <Margin size={'M20'} />
+        {/* 등록 버튼 */}
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>등록하기</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </TouchableWithoutFeedback>
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
+    padding: spacing.M20,
+    backgroundColor: colors.WHITE,
   },
-  header: {
-    alignItems: 'center',
-    marginBottom: 20,
+  typeContainer: {
+    justifyContent: 'center',
+    alignItems: 'center', 
   },
-  headerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
+  typeText: {
+    ...getFontStyle('title', 'large', 'bold'),
+    color: '#333',
+  }as TextStyle ,
   input: {
     height: 50,
     borderColor: '#ccc',
@@ -71,18 +106,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   textArea: {
-    height: 100,
+    height: spacing.M80,
     textAlignVertical: 'top',
   },
   button: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 15,
-    borderRadius: 5,
+    marginTop: spacing.M12,
+    backgroundColor: colors.GREEN,
+    padding: spacing.M16,
+    borderRadius: spacing.M4,
     alignItems: 'center',
-    marginTop: 20,
   },
   buttonText: {
-    color: '#fff',
-    fontSize: 18,
-  },
+    ...getFontStyle('titleBody', 'small', 'bold'),
+    color: colors.WHITE,
+  } as TextStyle,
 });

@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
   monthYearContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: spacing.M12
   } as ViewStyle,
   monthButtonContainer: {
     flexDirection: 'row',
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
     padding: spacing.M12,
   } as ViewStyle,
   titleText: {
-    ... getFontStyle('titleBody', 'small', 'medium'),
+    ... getFontStyle('title', 'small', 'bold'),
     color: colors.BLACK,
   } as TextStyle,
   bodyContainer: {

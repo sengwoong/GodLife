@@ -90,7 +90,7 @@ export default function CalendarEditScreen() {
               <Text style={styles.scheduleTitleText}>{item.title}</Text>
               <Text style={styles.scheduleContentText} numberOfLines={3}  >{item.content}</Text>
             </View>
-            <CustomButton size="text_size" label="수정" color={"GREEN"} onPress={() => handleEdit(item)} />
+            <CustomButton size="text_size" label="수정" color={"BLACK"} onPress={() => handleEdit(item)} />
           </View>
         )}
       />

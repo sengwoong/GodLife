@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { mainNavigations } from '../../constants';
+import { MainNavigations } from '../../constants';
 
 import HomeHeaderLeft from './HomeHeaderLeft';
 import MainScreen from '../../screens/main/MainScreen';
 import FeedScreen from '../../screens/feed/FeedScreen';
 
 export type mainStackParamList = {
-  [mainNavigations.MAIN]: undefined;
-  [mainNavigations.FEED]: { feeditemIndex: number };
+  [MainNavigations.MAIN]: undefined;
+  [MainNavigations.FEED]: { feeditemIndex: number };
 };
 
 const Stack = createStackNavigator<mainStackParamList>();
@@ -32,7 +32,7 @@ function MainStackNavigator() {
       }}
     >
       <Stack.Screen
-        name={mainNavigations.MAIN}
+        name={MainNavigations.MAIN}
         component={MainScreen}
         options={{
           headerTitle: ' ',
@@ -40,7 +40,7 @@ function MainStackNavigator() {
         }}
       />
       <Stack.Screen
-        name={mainNavigations.FEED}
+        name={MainNavigations.FEED}
         component={FeedScreen}
         options={{
           headerShown: true,

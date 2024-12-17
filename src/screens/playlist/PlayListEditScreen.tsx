@@ -1,41 +1,65 @@
-
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
+  TextStyle,
+} from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { PlayListStackParamList } from '../../navigations/stack/PlayListStackNavigator';
+import { getFontStyle } from '../../constants';
+import Margin from '../../components/Margin';
 
 export default function PlayListEditScreen() {
   const [title, setTitle] = useState('');
   const [URL, setURL] = useState('');
 
+  const route = useRoute<RouteProp<PlayListStackParamList, 'PlayListEdit'>>();
+  const { type, Index } = route.params || {};
 
+  const typeNamePlayList='플레이 리스트'
 
   const handleSubmit = () => {
-    console.log("Title:", title);
-    console.log("URL:", URL);
-
+    console.log('Title:', title);
+    console.log('URL:', URL);
+    console.log('Type:', type);
+    console.log('Index:', Index);
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>GodLife</Text>
+        {/* 헤더 */}
+        <Margin size={'M12'} />
+        {/* 중앙에 type 값 출력 */}
+        <View style={styles.typeContainer}>
+          <Text style={styles.typeText}>{type || 'Type 없음'}</Text>
         </View>
-
+        <Margin size={'M12'} />
+        {/* 입력 필드 */}
         <TextInput
           style={styles.input}
-          placeholder="노래제목"
+          placeholder={type+'추가하기'}
           value={title}
           onChangeText={setTitle}
         />
-
-        <TextInput
-          style={[styles.input, styles.textArea]}
-          placeholder="URL 링크"
-          value={URL}
-          onChangeText={setURL}
-          multiline
-        />
-
+        {type === typeNamePlayList ?(
+             <TextInput
+             style={[styles.input, styles.textArea]}
+             placeholder="URL 링크"
+             value={URL}
+             onChangeText={setURL}
+             multiline
+           />
+        ):(<></>)}
+     
+        <Margin size={'M20'} />
+        {/* 등록 버튼 */}
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>등록하기</Text>
         </TouchableOpacity>
@@ -50,14 +74,14 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
   },
-  header: {
-    alignItems: 'center',
-    marginBottom: 20,
+  typeContainer: {
+    justifyContent: 'center',
+    alignItems: 'center', 
   },
-  headerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
+  typeText: {
+    ...getFontStyle('title', 'large', 'bold'),
+    color: '#333',
+  }as TextStyle ,
   input: {
     height: 50,
     borderColor: '#ccc',
@@ -75,7 +99,6 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 5,
     alignItems: 'center',
-    marginTop: 20,
   },
   buttonText: {
     color: '#fff',

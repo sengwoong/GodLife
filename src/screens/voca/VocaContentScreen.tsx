@@ -3,7 +3,7 @@ import { View, StyleSheet, SafeAreaView, TextStyle } from 'react-native';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import CustomButton from '../../components/CustomButton';
 import SearchBar from '../../components/searchbar/SearchBar';
-import { getFontStyle, spacing, vocaNavigations } from '../../constants';
+import {  spacing, VocaNavigations } from '../../constants';
 import { VocaStackParamList } from '../../navigations/stack/VocaStackNavigator';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
@@ -28,10 +28,12 @@ function VocaContentScreen() {
     []
   );
 
+  const navigateToVocaUpdateWord = (Index: number) => {
+    navigation.navigate(VocaNavigations.VOCACONTENTEDIT, {type:'단어', Index });
+  };
 
-  
-  const navigateToVocaContent = (wordIndex: number) => {
-    navigation.navigate(vocaNavigations.VOCACONTENTEDIT, { wordIndex });
+  const navigateToVocaAddWord = () => {
+    navigation.navigate(VocaNavigations.VOCACONTENTEDIT,{type:'단어', Index:undefined});
   };
 
   return (
@@ -50,8 +52,8 @@ function VocaContentScreen() {
           'Spring',
         ]}
       />
-      <BulletinBoard data={schedules} onItemPress={navigateToVocaContent} />
-      <CustomButton color="BLACK" label="취소" style={styles.button} />
+      <BulletinBoard data={schedules} onItemPress={navigateToVocaUpdateWord} />
+      <CustomButton color="BLACK" label="등록하기" style={styles.button} onPress={navigateToVocaAddWord}/>
     </SafeAreaView>
   );
 }
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: spacing.M20,
-    justifyContent: 'space-between',
+    alignItems:'center'
   },
   button: {
     marginTop: 'auto',

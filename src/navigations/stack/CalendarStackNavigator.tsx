@@ -1,15 +1,15 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {colors, calendarNavigations} from '../../constants';
+import {colors, CalendarNavigations} from '../../constants';
 
 import calendarHomeHeaderLeft from './HomeHeaderLeft';
 import CalendarHomeScreen from '../../screens/calendar/CalendarHomeScreen';
 import CalendarEditScreen from '../../screens/calendar/CalendarEditScreen';
 
 export type calendarStackParamList = {
-  [calendarNavigations.CALENDAR]: undefined;
-  [calendarNavigations.CALENDAREDIT]: {calendaritemIndex: number};
+  [CalendarNavigations.CALENDAR]: undefined;
+  [CalendarNavigations.CALENDAREDIT]: {calendaritemIndex: number};
 };
 
 const Stack = createStackNavigator<calendarStackParamList>();
@@ -31,7 +31,7 @@ function CalendarStackNavigator() {
         headerTintColor: 'black',
       }}>
       <Stack.Screen
-        name={calendarNavigations.CALENDAR}
+        name={CalendarNavigations.CALENDAR}
         component={CalendarHomeScreen}
         options={(navigation) => ({
           headerTitle: '캘린더',
@@ -39,7 +39,7 @@ function CalendarStackNavigator() {
         })}
       />
       <Stack.Screen
-        name={calendarNavigations.CALENDAREDIT}
+        name={CalendarNavigations.CALENDAREDIT}
         component={CalendarEditScreen}
         options={{
           headerShown: true,

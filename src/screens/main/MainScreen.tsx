@@ -49,7 +49,7 @@ const totalPages = Math.ceil(totalItems / itemsPerPage);
         <View>
               {/* 상단 제목 */}
               <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>1초도 아까운 당신을 위한</Text>
+         
           </View>
           <CardSlider  />
         </View>
@@ -73,6 +73,8 @@ const totalPages = Math.ceil(totalItems / itemsPerPage);
             </View>
           </View>
           <Margin size={'M16'} ></Margin>
+          <Text style={styles.titleText}>다양한 컨텐츠를 즐겨 보아요</Text>
+          <Margin size={'M4'} ></Margin>
           {/* 추천 상품 섹션 */}
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <Image source={{ uri: 'https://example.com/product1.png' }} style={styles.productImage} />
@@ -177,7 +179,7 @@ const totalPages = Math.ceil(totalItems / itemsPerPage);
 
 const styles = StyleSheet.create({
   container: {
-    // 배경 색상이나 기타 설정은 필요에 맞게 추가 가능
+
   },
   scrollContent: {
     paddingHorizontal: spacing.M16,
@@ -248,8 +250,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   avatarContainer: {
-    // position: 'relative',
-    // display:"flex"
   },
   avatar: {
     backgroundColor: colors.BLACK,

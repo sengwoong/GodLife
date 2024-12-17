@@ -47,8 +47,8 @@ export const FeedDetailScreen = () => {
                 <Text style={styles.productSubtitle}>고민해결사</Text>
                 <Text style={styles.price}>32000point</Text>
                 <View style={styles.inlineBlock}>
-                  <CustomButton color="BLACK" shape="rounded" size="text_size" label="구매하기" />
-                  <CustomButton color="BLACK" shape="rounded" size="text_size" label="찜하기" />
+                  <CustomButton color="BLACK" shape="rounded" size="text_size" label="좋아요" />
+                  <CustomButton color="BLACK" shape="rounded" size="text_size" label="장바구니" />
                 </View>
               </View>
             </View>
@@ -69,22 +69,25 @@ export const FeedDetailScreen = () => {
           {/* Product Information */}
           <View style={styles.infoSection}>
             <Text style={styles.purchaseTitle}>상품 정보</Text>
+            <Margin size={'M4'} />
             <BulletinBoard data={product_content} onItemPress={navigateToContent} />
           </View>
 
           {/* Purchase Section */}
           <View style={styles.purchaseSection}>
             <Text style={styles.purchaseTitle}>구매평</Text>
+            <Margin size={'M4'} />
             <BulletinBoard data={product_content} onItemPress={navigateToContent} />
             <Margin size={'M4'} />
             <TextInput placeholder="구매평을 남기기 위해 댓글을 작성 하세요" style={styles.input} />
             <Margin size={'M4'} />
-            <CustomButton size="large" label="결제하기" />
+            <CustomButton size="large" label="구매평 남기기" />
           </View>
 
           {/* Refund and QA Section */}
           <View style={styles.refundSection}>
             <Text style={styles.purchaseTitle}>반품/교환</Text>
+            <Margin size={'M4'} />
             <Text style={styles.sectionText}>
               다운로드 전에는 반품이 가능합니다.
             </Text>
@@ -102,7 +105,7 @@ export const FeedDetailScreen = () => {
             <Margin size={'M4'} />
             <TextInput placeholder="qa 를 입력 혹은 클릭하여 수정하세요" style={styles.input} />
             <Margin size={'M4'} />
-            <CustomButton size="large" label="질문하기" />
+            <CustomButton color='BLACK' size="large" label="질문하기" />
           </View>
         </SafeAreaView>
       }
