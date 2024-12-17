@@ -228,7 +228,7 @@ const styling = () =>
       padding: spacing.M16,
     },
     titleText: {
-      ... getFontStyle('titleBody', 'small', 'medium'),
+      ... getFontStyle('titleBody', 'large', 'bold'),
       color: colors.BLACK,
     } as TextStyle,
     border: {
