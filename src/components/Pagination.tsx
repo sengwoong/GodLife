@@ -8,6 +8,7 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  textColor?: string;
 }
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
@@ -21,7 +22,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
   return (
     <View style={styles.pagination}>
-      <CustomButton  size='text_size' color='BLACK' label="Prev" onPress={goToPrevPage} inValid={currentPage === 1} />
+      <CustomButton size='text_size' color='BLACK' label="Prev" onPress={goToPrevPage} inValid={currentPage === 1} />
       <Text style={styles.pageInfo}>
         {currentPage} / {totalPages}
       </Text>
@@ -38,8 +39,13 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   pageInfo: {
-    color:colors.WHITE,
     fontSize: 18,
+  },
+  blackText: {
+    color: colors.BLACK,
+  },
+  whiteText: {
+    color: colors.WHITE,
   },
 });
 

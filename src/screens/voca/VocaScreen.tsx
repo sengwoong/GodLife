@@ -8,6 +8,7 @@ import { MainDrawerParamList } from '../../navigations/drawer/MainDrawerNavigato
 import { colors, getFontStyle, spacing, VocaNavigations } from '../../constants';
 import SearchBar from '../../components/searchbar/SearchBar';
 
+
 type Navigation = CompositeNavigationProp<
   StackNavigationProp<VocaStackParamList>,
   DrawerNavigationProp<MainDrawerParamList>

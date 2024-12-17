@@ -1,10 +1,16 @@
 import React, { useMemo, useState } from 'react';
-import { View, Text, Image, TextInput, StyleSheet, TextStyle, SafeAreaView, FlatList } from 'react-native';
+import { View, Text, Image, TextInput, StyleSheet, TextStyle, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import Margin from '../../components/Margin';
 import BulletinBoard from '../../components/BulletinBoard';
 import { colors, getFontStyle, spacing } from '../../constants';
 import FeedMenu from '../../components/FeedMenu';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { FeedStackParamList } from '../../navigations/stack/FeedStackNavigator';
+import { FeedNavigations } from '../../constants';
+
+type FeedDetailScreenNavigationProp = StackNavigationProp<FeedStackParamList>;
 
 export const FeedDetailScreen = () => {
   const CategoryButtons = [
@@ -29,6 +35,12 @@ export const FeedDetailScreen = () => {
     console.log(Index);
   };
 
+  const navigation = useNavigation<FeedDetailScreenNavigationProp>();
+
+  const handleUserPress = () => {
+    navigation.navigate(FeedNavigations.FEEDAVATAR, { userName: '고민해결사' });
+  };
+
   return (
     <FlatList
       data={[]}
@@ -44,7 +56,9 @@ export const FeedDetailScreen = () => {
               />
               <View style={styles.product}>
                 <Text style={styles.productTitle}>아름다운 삶을 위한 패키지</Text>
-                <Text style={styles.productSubtitle}>고민해결사</Text>
+                <TouchableOpacity onPress={handleUserPress}>
+                  <Text style={styles.productOwner}>고민해결사</Text>
+                </TouchableOpacity>
                 <Text style={styles.price}>32000point</Text>
                 <View style={styles.inlineBlock}>
                   <CustomButton color="BLACK" shape="rounded" size="text_size" label="좋아요" />
@@ -139,10 +153,11 @@ const styles = StyleSheet.create({
     ...getFontStyle('title', 'large', 'bold'),
     marginTop: spacing.M12,
   }as TextStyle,
-  productSubtitle: {
+  productOwner: {
     ...getFontStyle('title', 'medium', 'medium'),
     marginTop: spacing.M12,
-  }as TextStyle,
+    textDecorationLine: 'underline',
+  } as TextStyle,
   price: {
     ...getFontStyle('body', 'medium', 'medium'),
     color: colors.BLACK,

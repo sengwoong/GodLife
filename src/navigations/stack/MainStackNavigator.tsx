@@ -5,11 +5,9 @@ import { MainNavigations } from '../../constants';
 
 import HomeHeaderLeft from './HomeHeaderLeft';
 import MainScreen from '../../screens/main/MainScreen';
-import FeedScreen from '../../screens/feed/FeedScreen';
 
 export type mainStackParamList = {
   [MainNavigations.MAIN]: undefined;
-  [MainNavigations.FEED]: { feeditemIndex: number };
 };
 
 const Stack = createStackNavigator<mainStackParamList>();
@@ -36,18 +34,10 @@ function MainStackNavigator() {
         component={MainScreen}
         options={{
           headerTitle: ' ',
-          headerLeft: () => <HomeHeaderLeft />, // 수정된 부분
+          headerLeft: () => <HomeHeaderLeft />,
         }}
       />
-      <Stack.Screen
-        name={MainNavigations.FEED}
-        component={FeedScreen}
-        options={{
-          headerShown: true,
-          headerTitle: ' ',
-          headerLeft: () => <HomeHeaderLeft />, // 수정된 부분
-        }}
-      />
+  
     </Stack.Navigator>
   );
 }

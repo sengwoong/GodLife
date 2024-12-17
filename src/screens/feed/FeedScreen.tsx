@@ -1,5 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ListRenderItemInfo } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { FeedStackParamList } from '../../navigations/stack/FeedStackNavigator';
+import { FeedNavigations } from '../../constants';
+
+type FeedScreenNavigationProp = StackNavigationProp<FeedStackParamList>;
 
 interface Post {
   id: string;
@@ -47,34 +53,40 @@ const data: Post[] = [
   },
 ];
 
-const FeedScreen: React.FC = () => {
+export const FeedScreen = () => {
+  const navigation = useNavigation<FeedScreenNavigationProp>();
+
+  const handlePostPress = (post: Post) => {
+    navigation.navigate(FeedNavigations.FEEDDETAIL, { post });
+  };
+
   return (
     <View>
-   
-
-    <FlatList
-      data={data}
-      renderItem={({ item }: ListRenderItemInfo<Post>) => (
-        <View style={styles.postCard}>
-          <View style={styles.header}>
-            <Image source={{ uri: item.profileImage }} style={styles.profileImage} />
-            <Text style={styles.userName}>{item.userName}</Text>
-          </View>
-          <Text style={styles.postContent}>{item.postContent}</Text>
-          <Image source={{ uri: item.postImage }} style={styles.postImage} />
-          <View style={styles.footer}>
-            <TouchableOpacity style={styles.likeButton}>
-              <Text style={styles.likeText}>👍 좋아요</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.commentButton}>
-              <Text style={styles.commentText}>💬 댓글</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      )}
-      keyExtractor={item => item.id}
-      contentContainerStyle={styles.feed}
-    />
+      <FlatList
+        data={data}
+        renderItem={({ item }: ListRenderItemInfo<Post>) => (
+          <TouchableOpacity activeOpacity={1} onPress={() => handlePostPress(item)}>
+            <View style={styles.postCard}>
+              <View style={styles.header}>
+                <Image source={{ uri: item.profileImage }} style={styles.profileImage} />
+                <Text style={styles.userName}>{item.userName}</Text>
+              </View>
+              <Text style={styles.postContent}>{item.postContent}</Text>
+              <Image source={{ uri: item.postImage }} style={styles.postImage} />
+              <View style={styles.footer}>
+                <TouchableOpacity style={styles.likeButton}>
+                  <Text style={styles.likeText}>👍 좋아요</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.commentButton}>
+                  <Text style={styles.commentText}>💬 댓글</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </TouchableOpacity>
+        )}
+        keyExtractor={item => item.id}
+        contentContainerStyle={styles.feed}
+      />
     </View>
   );
 };
@@ -139,4 +151,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FeedScreen;
+

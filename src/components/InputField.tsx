@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { mergeRefs } from '../../utils/common';
-import { colors, getFontStyle, spacing } from '../constants'; 
+import { colors, getFontStyle, spacing } from '../constants/index'; 
 
 interface InputFieldProps extends TextInputProps {
   disabled?: boolean;
