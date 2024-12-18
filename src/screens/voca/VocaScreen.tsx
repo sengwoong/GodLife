@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, StyleSheet, FlatList, TouchableOpacity, TextStyle } from 'react-native';
+import { SafeAreaView, Text, StyleSheet, FlatList, TouchableOpacity, View, TextStyle, TextInput } from 'react-native';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
@@ -7,6 +7,9 @@ import { VocaStackParamList } from '../../navigations/stack/VocaStackNavigator';
 import { MainDrawerParamList } from '../../navigations/drawer/MainDrawerNavigator';
 import { colors, getFontStyle, spacing, VocaNavigations } from '../../constants';
 import SearchBar from '../../components/searchbar/SearchBar';
+import FAB from '../../components/common/FAB';
+import { CompoundOption } from '../../components/Modal';
+import Margin from '../../components/Margin';
 
 
 type Navigation = CompositeNavigationProp<
@@ -16,84 +19,176 @@ type Navigation = CompositeNavigationProp<
 
 function VocaScreen() {
   const navigation = useNavigation<Navigation>();
+  const [searchText, setSearchText] = useState<string>('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [newVocaName, setNewVocaName] = useState('');
+
+  const [vocaList, setVocaList] = useState([
+    { id: 1, title: '초등단어' },
+    { id: 2, title: '중등단어' },
+    { id: 3, title: '고등단어' },
+    { id: 4, title: '중등단어' },
+  ]);
 
   const navigateToVocaContent = (vocaIndex: number) => {
     navigation.navigate(VocaNavigations.VOCACONTENT, { vocaIndex });
   };
 
-  const vocaList = [
-    { id: 1, title: '초등단어' },
-    { id: 2, title: '중등단어' },
-    { id: 3, title: '고등단어' },
-    { id: 4, title: '중등단어' },
-
-  ];
-
-  const [searchText, setSearchText] = useState<string>(''); // 검색어 상태
-
   const renderItem = ({ item }: { item: { id: number; title: string } }) => (
     <TouchableOpacity
-      style={styles.button}
+      style={styles.listItem}
       onPress={() => navigateToVocaContent(item.id)}>
-      <Text style={styles.buttonText}>{item.title}</Text>
+      <View style={styles.listContent}>
+        <Text style={styles.listTitle}>{item.title}</Text>
+        <Text style={styles.listCount}>32개의 단어</Text>
+      </View>
     </TouchableOpacity>
   );
 
+  const handleAddVoca = () => {
+    if (!newVocaName.trim()) return;
+    
+    const newVoca = {
+      id: vocaList.length + 1,
+      title: newVocaName.trim(),
+    };
+    
+    setVocaList([...vocaList, newVoca]);
+    setIsModalVisible(false);
+    setNewVocaName('');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>사전 선택</Text>
-      <Text style={styles.subtitle}>원하는 단어 사전을 선택하세요.</Text>
-      <SearchBar setSearchText={setSearchText} searchText={searchText} initialSuggestions={['React', 'React Native', 'JavaScript', 'TypeScript', 'Node.js', 'Python', 'Django', 'Spring']} />
+      <View style={styles.header}>
+        <Text style={styles.title}>단어장</Text>
+        <Text style={styles.subtitle}>학습할 단어장을 선택하세요</Text>
+      </View>
+      
+      <View style={styles.searchContainer}>
+        <SearchBar 
+          setSearchText={setSearchText} 
+          searchText={searchText} 
+          initialSuggestions={['React', 'React Native', 'JavaScript', 'TypeScript', 'Node.js', 'Python', 'Django', 'Spring']} 
+        />
+      </View>
       
       <FlatList
         data={vocaList}
-        renderItem={renderItem} // Use the renderItem function to render your button
+        renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={styles.buttonContainer}
+        contentContainerStyle={styles.listContainer}
       />
+      
+      <FAB onPress={() => setIsModalVisible(true)} />
+
+      <CompoundOption
+        isVisible={isModalVisible}
+        hideOption={() => setIsModalVisible(false)}
+        animationType="slide">
+        <CompoundOption.Background>
+          <CompoundOption.Container style={styles.modalContainer}>
+            <CompoundOption.Title>새 단어장 만들기</CompoundOption.Title>
+            <Margin size={'M12'} />
+            <View style={styles.inputContainer}>
+              <TextInput
+                placeholder="단어장 이름을 입력하세요"
+                value={newVocaName}
+                onChangeText={setNewVocaName}
+                autoFocus
+                style={styles.input}
+              />
+            </View>
+            <Margin size={'M12'} />
+            <CompoundOption.Divider />
+            
+            <View style={styles.buttonContainer}>
+              <CompoundOption.Button 
+                onPress={() => setIsModalVisible(false)}>
+                취소
+              </CompoundOption.Button>
+              <CompoundOption.Button 
+                onPress={handleAddVoca}>
+                추가
+              </CompoundOption.Button>
+            </View>
+          </CompoundOption.Container>
+        </CompoundOption.Background>
+      </CompoundOption>
+      
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flex: 1,
-    
+    backgroundColor: colors.WHITE,
+  },
+  header: {
+    paddingHorizontal: spacing.M20,
+    paddingTop: spacing.M24,
+    paddingBottom: spacing.M16,
+    backgroundColor: colors.WHITE,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.GRAY,
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
     color: colors.BLACK,
-    marginBottom: spacing.M8,
-  },
+    ...getFontStyle('title', 'large', 'bold'),
+    marginBottom: spacing.M4,
+  } as TextStyle,
   subtitle: {
+    color: colors.GRAY,
+    ...getFontStyle('body', 'medium', 'regular'),
+  } as TextStyle,
+  searchContainer: {
+    paddingHorizontal: spacing.M20,
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: spacing.M16,
+  },
+  listContainer: {
+    paddingHorizontal: spacing.M20,
+  },
+  listItem: {
+    paddingVertical: spacing.M16,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.GRAY,
+  },
+  listContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  listTitle: {
+    color: colors.BLACK,
+    ...getFontStyle('body', 'medium', 'bold'),
+  } as TextStyle,
+  listCount: {
+    color: colors.GRAY,
+    ...getFontStyle('body', 'small', 'regular'),
+  } as TextStyle,
+  modalContainer: {
+    backgroundColor: colors.WHITE,
+    paddingTop: spacing.M16,
+  },
+  inputContainer: {
+    paddingHorizontal: spacing.M16,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: colors.GRAY,
+    borderRadius: 8,
+    padding: spacing.M12,
     fontSize: 16,
     color: colors.BLACK,
-    marginBottom: spacing.M12,
-    textAlign: 'center',
   },
   buttonContainer: {
-    paddingHorizontal: spacing.M2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: spacing.M16,
   },
-  button: {
-    backgroundColor: colors.GREEN,
-    paddingVertical: spacing.M16,
-    borderRadius: 8,
-    marginBottom: spacing.M16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: colors.BLACK,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 5,
-    width: 280,
-  },
-  buttonText: {
-    color: colors.WHITE,
-    ... getFontStyle('title', 'medium', 'bold'),
-  } as TextStyle,
 });
 
 export default VocaScreen;
