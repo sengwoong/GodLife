@@ -12,7 +12,7 @@ function HomeHeaderLeft() {
             style={{ padding: 10 }}
         >
             <Image 
-                source={require('../../asset/images/Menu.png')}
+                source={require('../../assets/images/Menu.png')}
                 style={{ width: 24, height: 24 }}
             />
         </TouchableOpacity>

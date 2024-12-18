@@ -10,6 +10,9 @@ import GoldenIcon from '../../components/GoldenIcont';
 import Pagination from '../../components/Pagination';
 import Margin from '../../components/Margin';
 import CardSlider from '../../components/CardSlider';
+import MusicPlayer from '../../components/MusicPlayer';
+import { Music } from '../../types/music';
+
 
 const GRADIENT_SIZE = 54;
 const AVATAR_SIZE = 50;
@@ -18,6 +21,22 @@ const MUSIC_PLAYER_WIDTH = "80%";
 function MainScreen() {
   const [activeButton, setActiveButton] = useState('전체보기');
   
+   const musicData:Music[] = [
+    {
+      id: '1',
+      title: 'Blizzards',
+      description: 'Lorem ipsum dolor, sit amet consectetur adipisicing.',
+      audioUrl: 1,
+    },
+    {
+      id: '2',
+      title: 'Calm',
+      description: 'Lorem ipsum dolor, sit amet consectetur adipisicing.',
+      audioUrl: 2,
+    },
+    // ... 나머지 음악 데이터
+  ];
+
   const CategoryButtons = [
     { label: '전체보기', id: 'all' },
     { label: '단어장', id: 'vocabulary' },
@@ -45,7 +64,7 @@ function MainScreen() {
       <ScrollView>
         <View>
           <View style={styles.titleContainer}></View>
-          <CardSlider />
+          <CardSlider  musicData={musicData}/>
         </View>
 
         <View style={styles.scrollContent}>

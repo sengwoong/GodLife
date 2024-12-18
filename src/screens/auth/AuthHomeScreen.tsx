@@ -10,9 +10,9 @@ type AuthHomeScreenProps = StackScreenProps<AuthStackParamList, typeof authNavig
 
 function AuthHomeScreen({ navigation }: AuthHomeScreenProps) {
   const images = [
-    require('../../asset/images/MainImage.png'),
-    require('../../asset/images/ScheduleImage.png'),
-    require('../../asset/images/VocaImage.png'),
+    require('../../assets/images/MainImage.png'),
+    require('../../assets/images/ScheduleImage.png'),
+    require('../../assets/images/VocaImage.png'),
   ];
 
   return (

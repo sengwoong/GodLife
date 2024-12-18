@@ -5,7 +5,7 @@ const GoldenIcon = () => {
   return (
     <View style={styles.container}>
    <Image
-  source={require('../asset/images/GoldBricks.png')}  // assets 폴더 내에 위치한 이미지
+  source={require('../assets/images/GoldBricks.png')} 
   style={styles.image}
 />
 

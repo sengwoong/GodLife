@@ -3,7 +3,8 @@ import { View, ScrollView, Text, StyleSheet, Dimensions, NativeSyntheticEvent, N
 import { colors, getFontStyle, spacing } from '../constants';
 import Line from './Line';
 import Margin from './Margin';
-
+import MusicPlayer  from './MusicPlayer';
+import { Music } from '../types/music';
 let { width } = Dimensions.get('window');
 width = width;
 
@@ -14,9 +15,7 @@ interface Voca {
 }
 
 interface CardSliderProps {
-  voca: Voca;
-  playlist: string[]; 
-  calendarItems: { time: string, title: string, description: string }[]; 
+  musicData: Music[];
 }
 
 
@@ -36,7 +35,7 @@ const calendarItems = [
 
 
 
-const CardSlider: React.FC = () => {
+const CardSlider = ({ musicData }: CardSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -84,18 +83,7 @@ const CardSlider: React.FC = () => {
           <View style={styles.cardContent}>
             <Text style={styles.cardTitle}>현재 플레이 중인 노래</Text>
             <Margin size={'M8'} />
-            <View style={styles.playListCard}>
-              {playlist.map((song, index) => (
-                <View>
-                  <Text key={'song'+index} style={styles.cardplayTitle}
-                    numberOfLines={1} 
-                    ellipsizeMode="tail">
-                    {song}
-                  </Text>
-                  <Line/>
-                </View>
-              ))}
-            </View>
+            <MusicPlayer musicData={musicData} />
           </View>
         </View>
 
