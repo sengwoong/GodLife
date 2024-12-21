@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, TextStyle } from 'react-native';
+import { View, TextInput, StyleSheet, TextStyle, Keyboard } from 'react-native';
 import { handleSearch, handleSelectSuggestion } from '../../../utils/searchUtils';
 import SearchResults from './SearchResults';
 import { colors, getFontStyle, spacing } from '../../constants';
@@ -13,6 +13,7 @@ const SearchBar: React.FC<SearchBarProps> = ({initialSuggestions,setSearchText,s
 
   const [recentSearches, setRecentSearches] = useState<string[]>([]); 
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>(initialSuggestions);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const onSearchChange = (text: string): void => {
     setSearchText(text);
     handleSearch(text, initialSuggestions, setFilteredSuggestions);
@@ -23,6 +24,11 @@ const SearchBar: React.FC<SearchBarProps> = ({initialSuggestions,setSearchText,s
     handleSelectSuggestion(suggestion, recentSearches, setRecentSearches, setFilteredSuggestions);
   };
 
+  const handleBlur = () => {
+    setIsSearchFocused(false);
+    Keyboard.dismiss();
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -30,13 +36,19 @@ const SearchBar: React.FC<SearchBarProps> = ({initialSuggestions,setSearchText,s
         placeholder="검색어를 입력하세요"
         value={searchText}
         onChangeText={onSearchChange}
+        onBlur={handleBlur}
+        onFocus={() => setIsSearchFocused(true)}
       />
-      <SearchResults
-        searchText={searchText}
-        filteredSuggestions={filteredSuggestions}
-        recentSearches={recentSearches}
-        onSuggestionSelect={onSuggestionSelect}
-      />
+      {
+        searchText.trim() && isSearchFocused && (
+        <SearchResults
+          searchText={searchText}
+          filteredSuggestions={filteredSuggestions}
+          recentSearches={recentSearches}
+          onSuggestionSelect={onSuggestionSelect}
+        />
+        )
+      }
     </View>
   );
 };

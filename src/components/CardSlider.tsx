@@ -4,7 +4,7 @@ import { colors, getFontStyle, spacing } from '../constants';
 import Line from './Line';
 import Margin from './Margin';
 import MusicPlayer  from './MusicPlayer';
-import { Music } from '../types/music';
+import { Music } from '../types';
 let { width } = Dimensions.get('window');
 width = width;
 

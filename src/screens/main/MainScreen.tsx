@@ -11,7 +11,7 @@ import Pagination from '../../components/Pagination';
 import Margin from '../../components/Margin';
 import CardSlider from '../../components/CardSlider';
 import MusicPlayer from '../../components/MusicPlayer';
-import { Music } from '../../types/music';
+import { Music } from '../../types';
 
 
 const GRADIENT_SIZE = 54;
@@ -89,9 +89,9 @@ function MainScreen() {
             </View>
           </View>
 
-          <Margin size={'M16'} />
+          <Margin size={'M12'} />
           <Text style={styles.titleText}>다양한 컨텐츠를 즐겨 보아요</Text>
-          <Margin size={'M4'} />
+          <Margin size={'M8'} />
 
           {/* 추천 상품 섹션 */}
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -173,11 +173,8 @@ function MainScreen() {
           </View>
         </LinearGradient>
 
-        <View style={styles.promotionalPost}>
-          <View style={styles.promotionalPostTextContainer}>
-            <Text style={styles.promotionalPostText}>다양한 기능은 왼쪽 상단</Text>
-            <Text style={styles.promotionalPostText}>메뉴에서 확인가능 합니다!</Text>
-          </View>
+        <View style={styles.foodMargin}>
+     
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -197,7 +194,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.M16,
   },
   titleText: {
-    ...getFontStyle('title', 'large', 'bold'),
+    ...getFontStyle('title', 'medium', 'bold'),
     textAlign: 'center',
     color: colors.BLACK,
   } as TextStyle,
@@ -386,21 +383,10 @@ const styles = StyleSheet.create({
     ...getFontStyle("body","large","medium")
   }as TextStyle,
 
-  promotionalPost:{
+  foodMargin:{
     height:300,
     zIndex:-1,
   },
-  promotionalPostTextContainer: {
-    position:'absolute',
-    bottom: 0,           
-    left: 0,              
-    right: 0,             
-
-  },
-  promotionalPostText:{
-    textAlign: 'center',  
-    ...getFontStyle("display", "small", "bold")
-  }as TextStyle,
 });
 
 export default MainScreen;

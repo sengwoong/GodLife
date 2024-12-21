@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import { Music } from '../types/music';
+import { Music } from '../types';
 import { colors } from '../constants';
 import Margin from './Margin';
 

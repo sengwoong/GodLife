@@ -63,12 +63,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position:'absolute',
     marginTop:55,
+    justifyContent:'space-between',
   },
   width70:{
     width: '70%',
   },
   width30:{
-    width: '30%',
+    width: '28%',
   },
   column: {
     backgroundColor: colors.WHITE,

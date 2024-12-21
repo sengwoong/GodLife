@@ -41,25 +41,15 @@ function PlayListScreen() {
     setNewPlaylistName('');
   };
 
-  const renderItem = ({ item }: { item: { id: number; title: string } }) => (
-    <TouchableOpacity
-      style={styles.listItem}
-      onPress={() => navigateToPlayListContent(item.id)}>
-      <View style={styles.listContent}>
-        <Text style={styles.listTitle}>{item.title}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-
   return (
     <SafeAreaView style={styles.container}>
+      <Margin size={'M24'} />
       <View style={styles.header}>
         <Text style={styles.title}>플레이리스트</Text>
         <Text style={styles.subtitle}>플레이리스트를 선택하세요</Text>
       </View>
-      
+      <Margin size={'M16'} />
       <View style={styles.searchContainer}>
-        <Margin size={'M12'} /> 
         <SearchBar 
           setSearchText={setSearchText} 
           searchText={searchText} 
@@ -69,7 +59,15 @@ function PlayListScreen() {
       
       <FlatList
         data={playListList}
-        renderItem={renderItem}
+        renderItem={({ item }: { item: { id: number; title: string } }) => (
+          <TouchableOpacity
+            style={styles.listItem}
+            onPress={() => navigateToPlayListContent(item.id)}>
+            <View style={styles.listContent}>
+              <Text style={styles.listTitle}>{item.title}</Text>
+            </View>
+          </TouchableOpacity>
+        )}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listContainer}
       />
@@ -123,8 +121,7 @@ const styles = StyleSheet.create({
     paddingTop: spacing.M24,
     paddingBottom: spacing.M16,
     backgroundColor: colors.WHITE,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.GRAY,
+
   },
   title: {
     color: colors.BLACK,
@@ -132,7 +129,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.M4,
   }as TextStyle,
   subtitle: {
-    color: colors.GRAY,
+    color: colors.BLACK,
     ...getFontStyle('body', 'medium', 'regular'),
   }as TextStyle,
   listContainer: {

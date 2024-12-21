@@ -34,17 +34,6 @@ function VocaScreen() {
     navigation.navigate(VocaNavigations.VOCACONTENT, { vocaIndex });
   };
 
-  const renderItem = ({ item }: { item: { id: number; title: string } }) => (
-    <TouchableOpacity
-      style={styles.listItem}
-      onPress={() => navigateToVocaContent(item.id)}>
-      <View style={styles.listContent}>
-        <Text style={styles.listTitle}>{item.title}</Text>
-        <Text style={styles.listCount}>32개의 단어</Text>
-      </View>
-    </TouchableOpacity>
-  );
-
   const handleAddVoca = () => {
     if (!newVocaName.trim()) return;
     
@@ -60,11 +49,12 @@ function VocaScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Margin size={'M24'} />
       <View style={styles.header}>
         <Text style={styles.title}>단어장</Text>
         <Text style={styles.subtitle}>학습할 단어장을 선택하세요</Text>
       </View>
-      
+      <Margin size={'M16'} />
       <View style={styles.searchContainer}>
         <SearchBar 
           setSearchText={setSearchText} 
@@ -75,7 +65,16 @@ function VocaScreen() {
       
       <FlatList
         data={vocaList}
-        renderItem={renderItem}
+        renderItem={({ item }: { item: { id: number; title: string } }) => (
+          <TouchableOpacity
+            style={styles.listItem}
+            onPress={() => navigateToVocaContent(item.id)}>
+            <View style={styles.listContent}>
+              <Text style={styles.listTitle}>{item.title}</Text>
+              <Text style={styles.listCount}>32개의 단어</Text>
+            </View>
+          </TouchableOpacity>
+        )}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listContainer}
       />
@@ -127,11 +126,8 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: spacing.M20,
-    paddingTop: spacing.M24,
-    paddingBottom: spacing.M16,
     backgroundColor: colors.WHITE,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.GRAY,
+
   },
   title: {
     color: colors.BLACK,
@@ -139,7 +135,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.M4,
   } as TextStyle,
   subtitle: {
-    color: colors.GRAY,
+    color: colors.BLACK,
     ...getFontStyle('body', 'medium', 'regular'),
   } as TextStyle,
   searchContainer: {
